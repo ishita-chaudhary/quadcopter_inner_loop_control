@@ -1,0 +1,22 @@
+# Circular trajectory at 5m altitude
+# 16 waypoints forming a circle with 3m radius
+
+waypoints:
+  - {name: "Takeoff", x: 0.0, y: 0.0, z: -5.0}
+  - {name: "Circle 0°", x: 3.0, y: 0.0, z: -5.0}
+  - {name: "Circle 22.5°", x: 2.77, y: 1.15, z: -5.0}
+  - {name: "Circle 45°", x: 2.12, y: 2.12, z: -5.0}
+  - {name: "Circle 67.5°", x: 1.15, y: 2.77, z: -5.0}
+  - {name: "Circle 90°", x: 0.0, y: 3.0, z: -5.0}
+  - {name: "Circle 112.5°", x: -1.15, y: 2.77, z: -5.0}
+  - {name: "Circle 135°", x: -2.12, y: 2.12, z: -5.0}
+  - {name: "Circle 157.5°", x: -2.77, y: 1.15, z: -5.0}
+  - {name: "Circle 180°", x: -3.0, y: 0.0, z: -5.0}
+  - {name: "Circle 202.5°", x: -2.77, y: -1.15, z: -5.0}
+  - {name: "Circle 225°", x: -2.12, y: -2.12, z: -5.0}
+  - {name: "Circle 247.5°", x: -1.15, y: -2.77, z: -5.0}
+  - {name: "Circle 270°", x: 0.0, y: -3.0, z: -5.0}
+  - {name: "Circle 292.5°", x: 1.15, y: -2.77, z: -5.0}
+  - {name: "Circle 315°", x: 2.12, y: -2.12, z: -5.0}
+  - {name: "Circle 337.5°", x: 2.77, y: -1.15, z: -5.0}
+  - {name: "Return home", x: 0.0, y: 0.0, z: -5.0}

@@ -1,0 +1,4 @@
+source;share/asmc_system/local_setup.bash
+source;share/asmc_system/local_setup.dsv
+source;share/asmc_system/local_setup.sh
+source;share/asmc_system/local_setup.zsh

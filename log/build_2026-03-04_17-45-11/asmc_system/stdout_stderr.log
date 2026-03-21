@@ -1,0 +1,33 @@
+[35m[1mConsolidate compiler generated dependencies of target asmc_system_refactored[0m
+[ 66%] Built target offboard_manager_node
+[ 66%] Built target trajectory_planner_node
+[100%] Built target asmc_system_refactored
+-- Install configuration: ""
+-- Up-to-date: /home/control-lab/rl_indi/install/asmc_system/lib/asmc_system/asmc_system_refactored
+-- Up-to-date: /home/control-lab/rl_indi/install/asmc_system/lib/asmc_system/offboard_manager_node
+-- Up-to-date: /home/control-lab/rl_indi/install/asmc_system/lib/asmc_system/trajectory_planner_node
+-- Up-to-date: /home/control-lab/rl_indi/install/asmc_system/include/
+-- Up-to-date: /home/control-lab/rl_indi/install/asmc_system/include//asmc_system
+-- Up-to-date: /home/control-lab/rl_indi/install/asmc_system/include//asmc_system/pid_controllers_clean.hpp
+-- Up-to-date: /home/control-lab/rl_indi/install/asmc_system/include//asmc_system/asmc.hpp
+-- Up-to-date: /home/control-lab/rl_indi/install/asmc_system/share/asmc_system/launch/
+-- Up-to-date: /home/control-lab/rl_indi/install/asmc_system/share/asmc_system/launch//asmc_system.launch.py
+-- Up-to-date: /home/control-lab/rl_indi/install/asmc_system/share/asmc_system/config/
+-- Up-to-date: /home/control-lab/rl_indi/install/asmc_system/share/asmc_system/config//asmc_parameters.yaml
+-- Up-to-date: /home/control-lab/rl_indi/install/asmc_system/share/asmc_system/config//waypoints_circle.yaml
+-- Up-to-date: /home/control-lab/rl_indi/install/asmc_system/share/asmc_system/config//waypoints_square.yaml
+-- Up-to-date: /home/control-lab/rl_indi/install/asmc_system/share/ament_index/resource_index/package_run_dependencies/asmc_system
+-- Up-to-date: /home/control-lab/rl_indi/install/asmc_system/share/ament_index/resource_index/parent_prefix_path/asmc_system
+-- Up-to-date: /home/control-lab/rl_indi/install/asmc_system/share/asmc_system/environment/ament_prefix_path.sh
+-- Up-to-date: /home/control-lab/rl_indi/install/asmc_system/share/asmc_system/environment/ament_prefix_path.dsv
+-- Up-to-date: /home/control-lab/rl_indi/install/asmc_system/share/asmc_system/environment/path.sh
+-- Up-to-date: /home/control-lab/rl_indi/install/asmc_system/share/asmc_system/environment/path.dsv
+-- Up-to-date: /home/control-lab/rl_indi/install/asmc_system/share/asmc_system/local_setup.bash
+-- Up-to-date: /home/control-lab/rl_indi/install/asmc_system/share/asmc_system/local_setup.sh
+-- Up-to-date: /home/control-lab/rl_indi/install/asmc_system/share/asmc_system/local_setup.zsh
+-- Up-to-date: /home/control-lab/rl_indi/install/asmc_system/share/asmc_system/local_setup.dsv
+-- Installing: /home/control-lab/rl_indi/install/asmc_system/share/asmc_system/package.dsv
+-- Up-to-date: /home/control-lab/rl_indi/install/asmc_system/share/ament_index/resource_index/packages/asmc_system
+-- Up-to-date: /home/control-lab/rl_indi/install/asmc_system/share/asmc_system/cmake/asmc_systemConfig.cmake
+-- Up-to-date: /home/control-lab/rl_indi/install/asmc_system/share/asmc_system/cmake/asmc_systemConfig-version.cmake
+-- Up-to-date: /home/control-lab/rl_indi/install/asmc_system/share/asmc_system/package.xml

@@ -1,0 +1,4 @@
+[35m[1mConsolidate compiler generated dependencies of target trajectory_planner_node[0m
+[ 33%] Built target offboard_manager_node
+[ 50%] [32mBuilding CXX object CMakeFiles/asmc_system_refactored.dir/src/asmc_system_refactored.cpp.o[0m
+[ 83%] Built target trajectory_planner_node

@@ -1,0 +1,8 @@
+In file included from [01m[K/home/control-lab/rl_indi/src/asmc_system/src/asmc_system_refactored.cpp:10[m[K:
+[01m[K/home/control-lab/rl_indi/src/asmc_system/include/asmc_system/pid_controllers_clean.hpp:[m[K In constructor ‘[01m[Kasmc_system::PositionController::PositionController()[m[K’:
+[01m[K/home/control-lab/rl_indi/src/asmc_system/include/asmc_system/pid_controllers_clean.hpp:26:5:[m[K [01;31m[Kerror: [m[Kexpected ‘[01m[K;[m[K’ before ‘[01m[Kmax_int_pos_z_[m[K’
+   26 |     [01;31m[Kmax_int_pos_z_[m[K = 0.2f;
+      |     [01;31m[K^~~~~~~~~~~~~~[m[K
+gmake[2]: *** [CMakeFiles/asmc_system_refactored.dir/build.make:76: CMakeFiles/asmc_system_refactored.dir/src/asmc_system_refactored.cpp.o] Error 1
+gmake[1]: *** [CMakeFiles/Makefile2:141: CMakeFiles/asmc_system_refactored.dir/all] Error 2
+gmake: *** [Makefile:146: all] Error 2

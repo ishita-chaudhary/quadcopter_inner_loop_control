@@ -1,0 +1,29 @@
+In file included from [01m[K/home/control-lab/rl_indi/src/asmc_system/src/asmc_system_refactored.cpp:12[m[K:
+[01m[K/home/control-lab/rl_indi/src/asmc_system/include/asmc_system/asmc.hpp:[m[K In member function ‘[01m[KEigen::Vector3f asmc_system::ASMC::update(const Quaternionf&, const Vector3f&, const Quaternionf&, const Vector3f&, const Vector3f&, float)[m[K’:
+[01m[K/home/control-lab/rl_indi/src/asmc_system/include/asmc_system/asmc.hpp:85:11:[m[K [01;35m[Kwarning: [m[Kvariable ‘[01m[Kdriving_term[m[K’ set but not used [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wunused-but-set-variable-Wunused-but-set-variable]8;;[m[K]
+   85 |     float [01;35m[Kdriving_term[m[K = 0.0f;
+      |           [01;35m[K^~~~~~~~~~~~[m[K
+[01m[K/home/control-lab/rl_indi/src/asmc_system/src/asmc_system_refactored.cpp:[m[K In constructor ‘[01m[KASMCSystem::ASMCSystem()[m[K’:
+[01m[K/home/control-lab/rl_indi/src/asmc_system/src/asmc_system_refactored.cpp:120:58:[m[K [01;31m[Kerror: [m[K‘[01m[KFloat64MultiArray[m[K’ is not a member of ‘[01m[Kstd_msgs::msg[m[K’
+  120 | reate_subscription<std_msgs::msg::[01;31m[KFloat64MultiArray[m[K>(
+      |                                   [01;31m[K^~~~~~~~~~~~~~~~~[m[K
+
+[01m[K/home/control-lab/rl_indi/src/asmc_system/src/asmc_system_refactored.cpp:122:35:[m[K [01;31m[Kerror: [m[K‘[01m[KFloat64MultiArray[m[K’ in namespace ‘[01m[Kstd_msgs::msg[m[K’ does not name a type
+  122 |       [this](const std_msgs::msg::[01;31m[KFloat64MultiArray[m[K::SharedPtr msg) {
+      |                                   [01;31m[K^~~~~~~~~~~~~~~~~[m[K
+[01m[K/home/control-lab/rl_indi/src/asmc_system/src/asmc_system_refactored.cpp:[m[K In lambda function:
+[01m[K/home/control-lab/rl_indi/src/asmc_system/src/asmc_system_refactored.cpp:129:9:[m[K [01;31m[Kerror: [m[Kexpected ‘[01m[K{[m[K’ before ‘[01m[K;[m[K’ token
+  129 |       })[01;31m[K;[m[K
+      |         [01;31m[K^[m[K
+[01m[K/home/control-lab/rl_indi/src/asmc_system/src/asmc_system_refactored.cpp:[m[K In constructor ‘[01m[KASMCSystem::ASMCSystem()[m[K’:
+[01m[K/home/control-lab/rl_indi/src/asmc_system/src/asmc_system_refactored.cpp:129:9:[m[K [01;31m[Kerror: [m[Kexpected ‘[01m[K)[m[K’ before ‘[01m[K;[m[K’ token
+[01m[K/home/control-lab/rl_indi/src/asmc_system/src/asmc_system_refactored.cpp:120:76:[m[K [01;36m[Knote: [m[Kto match this ‘[01m[K([m[K’
+  120 | bscription<std_msgs::msg::Float64MultiArray>[01;36m[K([m[K
+      |                                             [01;36m[K^[m[K
+
+[01m[K/home/control-lab/rl_indi/src/asmc_system/src/asmc_system_refactored.cpp:144:5:[m[K [01;31m[Kerror: [m[K‘[01m[Kvel_out[m[K’ was not declared in this scope
+  144 |     [01;31m[Kvel_out[m[K.attitude_cmd = Eigen::Vector3f::Zero();
+      |     [01;31m[K^~~~~~~[m[K
+gmake[2]: *** [CMakeFiles/asmc_system_refactored.dir/build.make:76: CMakeFiles/asmc_system_refactored.dir/src/asmc_system_refactored.cpp.o] Error 1
+gmake[1]: *** [CMakeFiles/Makefile2:141: CMakeFiles/asmc_system_refactored.dir/all] Error 2
+gmake: *** [Makefile:146: all] Error 2

@@ -1,0 +1,4 @@
+[01m[K/home/control-lab/rl_indi/src/il_control_system/src/il_control_system_refactored.cpp:[m[K In member function ‘[01m[Kvoid IlControlSystem::publishControl(float, const Vector3f&)[m[K’:
+[01m[K/home/control-lab/rl_indi/src/il_control_system/src/il_control_system_refactored.cpp:274:11:[m[K [01;35m[Kwarning: [m[Kunused variable ‘[01m[Knorm_yaw_final[m[K’ [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wunused-variable-Wunused-variable]8;;[m[K]
+  274 |     float [01;35m[Knorm_yaw_final[m[K = std::max(-yaw_headroom, std::min(yaw_headroom, norm_yaw_cmd));
+      |           [01;35m[K^~~~~~~~~~~~~~[m[K

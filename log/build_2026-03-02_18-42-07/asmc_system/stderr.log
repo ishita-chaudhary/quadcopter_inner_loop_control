@@ -1,0 +1,8 @@
+[01m[K/home/control-lab/rl_indi/src/asmc_system/src/asmc_system_refactored.cpp:[m[K In member function ‘[01m[Kvoid ASMCSystem::controlLoopCallback()[m[K’:
+[01m[K/home/control-lab/rl_indi/src/asmc_system/src/asmc_system_refactored.cpp:220:46:[m[K [01;31m[Kerror: [m[K‘[01m[Kdesired_yaw[m[K’ cannot be used as a function
+  220 | ed = Eigen::AngleAxisf([01;31m[Kdesired_yaw(2)[m[K, Eigen::Vector3f::UnitZ())
+      |                        [01;31m[K~~~~~~~~~~~^~~[m[K
+
+gmake[2]: *** [CMakeFiles/asmc_system_refactored.dir/build.make:76: CMakeFiles/asmc_system_refactored.dir/src/asmc_system_refactored.cpp.o] Error 1
+gmake[1]: *** [CMakeFiles/Makefile2:141: CMakeFiles/asmc_system_refactored.dir/all] Error 2
+gmake: *** [Makefile:146: all] Error 2

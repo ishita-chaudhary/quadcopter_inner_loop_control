@@ -1,0 +1,79 @@
+-- The C compiler identification is GNU 11.4.0
+-- The CXX compiler identification is GNU 11.4.0
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: /usr/bin/cc - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /usr/bin/c++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Found ament_cmake: 1.3.12 (/opt/ros/humble/share/ament_cmake/cmake)
+-- Found Python3: /home/control-lab/px4_env/bin/python3 (found version "3.10.18") found components: Interpreter 
+-- Found rclcpp: 16.0.16 (/opt/ros/humble/share/rclcpp/cmake)
+-- Found rosidl_generator_c: 3.1.7 (/opt/ros/humble/share/rosidl_generator_c/cmake)
+-- Found rosidl_adapter: 3.1.7 (/opt/ros/humble/share/rosidl_adapter/cmake)
+-- Found rosidl_generator_cpp: 3.1.7 (/opt/ros/humble/share/rosidl_generator_cpp/cmake)
+-- Using all available rosidl_typesupport_c: rosidl_typesupport_fastrtps_c;rosidl_typesupport_introspection_c
+-- Using all available rosidl_typesupport_cpp: rosidl_typesupport_fastrtps_cpp;rosidl_typesupport_introspection_cpp
+-- Found rmw_implementation_cmake: 6.1.2 (/opt/ros/humble/share/rmw_implementation_cmake/cmake)
+-- Found rmw_fastrtps_cpp: 6.2.9 (/opt/ros/humble/share/rmw_fastrtps_cpp/cmake)
+-- Found OpenSSL: /usr/lib/x86_64-linux-gnu/libcrypto.so (found version "3.0.2")  
+-- Found FastRTPS: /opt/ros/humble/include  
+-- Using RMW implementation 'rmw_fastrtps_cpp' as default
+-- Looking for pthread.h
+-- Looking for pthread.h - found
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Success
+-- Found Threads: TRUE  
+-- Found geometry_msgs: 4.9.0 (/opt/ros/humble/share/geometry_msgs/cmake)
+-- Found px4_msgs: 2.0.1 (/home/control-lab/rl_indi/install/px4_msgs/share/px4_msgs/cmake)
+-- Configuring done
+-- Generating done
+-- Build files have been written to: /home/control-lab/rl_indi/build/adaptive_indi_system
+[ 16%] [32mBuilding CXX object CMakeFiles/trajectory_planner_node.dir/src/trajectory_planner_node.cpp.o[0m
+[ 50%] [32mBuilding CXX object CMakeFiles/offboard_manager_node.dir/src/offboard_manager_node.cpp.o[0m
+[ 50%] [32mBuilding CXX object CMakeFiles/adaptive_indi_system_refactored.dir/src/adaptive_indi_system_refactored.cpp.o[0m
+[ 66%] [32m[1mLinking CXX executable trajectory_planner_node[0m
+[ 66%] Built target trajectory_planner_node
+[ 83%] [32m[1mLinking CXX executable offboard_manager_node[0m
+[ 83%] Built target offboard_manager_node
+[100%] [32m[1mLinking CXX executable adaptive_indi_system_refactored[0m
+[100%] Built target adaptive_indi_system_refactored
+-- Install configuration: ""
+-- Installing: /home/control-lab/rl_indi/install/adaptive_indi_system/lib/adaptive_indi_system/adaptive_indi_system_refactored
+-- Set runtime path of "/home/control-lab/rl_indi/install/adaptive_indi_system/lib/adaptive_indi_system/adaptive_indi_system_refactored" to ""
+-- Installing: /home/control-lab/rl_indi/install/adaptive_indi_system/lib/adaptive_indi_system/offboard_manager_node
+-- Set runtime path of "/home/control-lab/rl_indi/install/adaptive_indi_system/lib/adaptive_indi_system/offboard_manager_node" to ""
+-- Installing: /home/control-lab/rl_indi/install/adaptive_indi_system/lib/adaptive_indi_system/trajectory_planner_node
+-- Set runtime path of "/home/control-lab/rl_indi/install/adaptive_indi_system/lib/adaptive_indi_system/trajectory_planner_node" to ""
+-- Installing: /home/control-lab/rl_indi/install/adaptive_indi_system/include/
+-- Installing: /home/control-lab/rl_indi/install/adaptive_indi_system/include//adaptive_indi_system
+-- Installing: /home/control-lab/rl_indi/install/adaptive_indi_system/include//adaptive_indi_system/pid_controllers_clean.hpp
+-- Installing: /home/control-lab/rl_indi/install/adaptive_indi_system/include//adaptive_indi_system/indi_proper.hpp
+-- Installing: /home/control-lab/rl_indi/install/adaptive_indi_system/include//adaptive_indi_system/controllers.hpp
+-- Installing: /home/control-lab/rl_indi/install/adaptive_indi_system/share/adaptive_indi_system/launch/
+-- Installing: /home/control-lab/rl_indi/install/adaptive_indi_system/share/adaptive_indi_system/launch//improved_offboard.launch.py
+-- Installing: /home/control-lab/rl_indi/install/adaptive_indi_system/share/adaptive_indi_system/launch//adaptive_indi_system.launch.py
+-- Installing: /home/control-lab/rl_indi/install/adaptive_indi_system/share/adaptive_indi_system/launch//complete_system.launch.py
+-- Installing: /home/control-lab/rl_indi/install/adaptive_indi_system/share/adaptive_indi_system/config/
+-- Installing: /home/control-lab/rl_indi/install/adaptive_indi_system/share/adaptive_indi_system/config//adaptive_indi_params.yaml
+-- Installing: /home/control-lab/rl_indi/install/adaptive_indi_system/share/adaptive_indi_system/config//waypoints_circle.yaml
+-- Installing: /home/control-lab/rl_indi/install/adaptive_indi_system/share/adaptive_indi_system/config//waypoints_square.yaml
+-- Installing: /home/control-lab/rl_indi/install/adaptive_indi_system/share/ament_index/resource_index/package_run_dependencies/adaptive_indi_system
+-- Installing: /home/control-lab/rl_indi/install/adaptive_indi_system/share/ament_index/resource_index/parent_prefix_path/adaptive_indi_system
+-- Installing: /home/control-lab/rl_indi/install/adaptive_indi_system/share/adaptive_indi_system/environment/ament_prefix_path.sh
+-- Installing: /home/control-lab/rl_indi/install/adaptive_indi_system/share/adaptive_indi_system/environment/ament_prefix_path.dsv
+-- Installing: /home/control-lab/rl_indi/install/adaptive_indi_system/share/adaptive_indi_system/environment/path.sh
+-- Installing: /home/control-lab/rl_indi/install/adaptive_indi_system/share/adaptive_indi_system/environment/path.dsv
+-- Installing: /home/control-lab/rl_indi/install/adaptive_indi_system/share/adaptive_indi_system/local_setup.bash
+-- Installing: /home/control-lab/rl_indi/install/adaptive_indi_system/share/adaptive_indi_system/local_setup.sh
+-- Installing: /home/control-lab/rl_indi/install/adaptive_indi_system/share/adaptive_indi_system/local_setup.zsh
+-- Installing: /home/control-lab/rl_indi/install/adaptive_indi_system/share/adaptive_indi_system/local_setup.dsv
+-- Installing: /home/control-lab/rl_indi/install/adaptive_indi_system/share/adaptive_indi_system/package.dsv
+-- Installing: /home/control-lab/rl_indi/install/adaptive_indi_system/share/ament_index/resource_index/packages/adaptive_indi_system
+-- Installing: /home/control-lab/rl_indi/install/adaptive_indi_system/share/adaptive_indi_system/cmake/adaptive_indi_systemConfig.cmake
+-- Installing: /home/control-lab/rl_indi/install/adaptive_indi_system/share/adaptive_indi_system/cmake/adaptive_indi_systemConfig-version.cmake
+-- Installing: /home/control-lab/rl_indi/install/adaptive_indi_system/share/adaptive_indi_system/package.xml

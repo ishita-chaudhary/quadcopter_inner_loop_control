@@ -1,0 +1,97 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-.-999fe84589b2d8873623.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.12"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4
+					]
+				}
+			],
+			"name" : "",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "il_control_system",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "il_control_system_refactored::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-il_control_system_refactored-c52179770238e61e4be6.json",
+					"name" : "il_control_system_refactored",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "il_control_system_uninstall::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-il_control_system_uninstall-d21540300b48d44909e6.json",
+					"name" : "il_control_system_uninstall",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "offboard_manager_node::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-offboard_manager_node-f994434064cb4fa05cbc.json",
+					"name" : "offboard_manager_node",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "trajectory_planner_node::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-trajectory_planner_node-c00cc0208bd87a0783e8.json",
+					"name" : "trajectory_planner_node",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "uninstall::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-uninstall-9c24f1c5e48481a85310.json",
+					"name" : "uninstall",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "/home/control-lab/rl_indi/build/il_control_system",
+		"source" : "/home/control-lab/rl_indi/src/il_control_system"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 3
+	}
+}

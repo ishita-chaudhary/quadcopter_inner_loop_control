@@ -1,0 +1,22 @@
+[01m[K/home/control-lab/rl_indi/src/asmc_system/src/trajectory_planner_node.cpp:[m[K In member function ‘[01m[Kvoid TrajectoryPlanner::publishSetpoint()[m[K’:
+[01m[K/home/control-lab/rl_indi/src/asmc_system/src/trajectory_planner_node.cpp:321:47:[m[K [01;31m[Kerror: [m[K‘[01m[Kcurrent_drone_pos_[m[K’ was not declared in this scope
+  321 |     double dist_to_target = calculateDistance([01;31m[Kcurrent_drone_pos_[m[K[0], current_drone_pos_[1], current_drone_pos_[2],
+      |                                               [01;31m[K^~~~~~~~~~~~~~~~~~[m[K
+[01m[K/home/control-lab/rl_indi/src/asmc_system/src/trajectory_planner_node.cpp:347:38:[m[K [01;31m[Kerror: [m[Kno matching function for call to ‘[01m[KTrajectoryPlanner::reportPerformance(bool)[m[K’
+  347 |                     [01;31m[KreportPerformance(false)[m[K;
+      |                     [01;31m[K~~~~~~~~~~~~~~~~~^~~~~~~[m[K
+[01m[K/home/control-lab/rl_indi/src/asmc_system/src/trajectory_planner_node.cpp:73:8:[m[K [01;36m[Knote: [m[Kcandidate: ‘[01m[Kvoid TrajectoryPlanner::reportPerformance()[m[K’
+   73 |   void [01;36m[KreportPerformance[m[K()
+      |        [01;36m[K^~~~~~~~~~~~~~~~~[m[K
+[01m[K/home/control-lab/rl_indi/src/asmc_system/src/trajectory_planner_node.cpp:73:8:[m[K [01;36m[Knote: [m[K  candidate expects 0 arguments, 1 provided
+[01m[K/home/control-lab/rl_indi/src/asmc_system/src/trajectory_planner_node.cpp:[m[K In function ‘[01m[Kint main(int, char**)[m[K’:
+[01m[K/home/control-lab/rl_indi/src/asmc_system/src/trajectory_planner_node.cpp:456:26:[m[K [01;31m[Kerror: [m[Kno matching function for call to ‘[01m[KTrajectoryPlanner::reportPerformance(bool)[m[K’
+  456 |   [01;31m[Knode->reportPerformance(true)[m[K;
+      |   [01;31m[K~~~~~~~~~~~~~~~~~~~~~~~^~~~~~[m[K
+[01m[K/home/control-lab/rl_indi/src/asmc_system/src/trajectory_planner_node.cpp:73:8:[m[K [01;36m[Knote: [m[Kcandidate: ‘[01m[Kvoid TrajectoryPlanner::reportPerformance()[m[K’
+   73 |   void [01;36m[KreportPerformance[m[K()
+      |        [01;36m[K^~~~~~~~~~~~~~~~~[m[K
+[01m[K/home/control-lab/rl_indi/src/asmc_system/src/trajectory_planner_node.cpp:73:8:[m[K [01;36m[Knote: [m[K  candidate expects 0 arguments, 1 provided
+gmake[2]: *** [CMakeFiles/trajectory_planner_node.dir/build.make:76: CMakeFiles/trajectory_planner_node.dir/src/trajectory_planner_node.cpp.o] Error 1
+gmake[1]: *** [CMakeFiles/Makefile2:193: CMakeFiles/trajectory_planner_node.dir/all] Error 2
+gmake: *** [Makefile:146: all] Error 2

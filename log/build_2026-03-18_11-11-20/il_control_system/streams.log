@@ -1,0 +1,274 @@
+[0.015s] Invoking command in '/home/control-lab/rl_indi/build/il_control_system': CMAKE_PREFIX_PATH=/home/control-lab/rl_indi/install/px4_msgs:/home/control-lab/rl_indi/install/asmc_system:/home/control-lab/rl_indi/install/adaptive_indi_system:/home/control-lab/gz_ros2_control/install/ros2_controllers:/home/control-lab/gz_ros2_control/install/ros2_control_demos:/home/control-lab/gz_ros2_control/install/ros2_control_demo_example_3:/home/control-lab/gz_ros2_control/install/ign_ros2_control_demos:/home/control-lab/gz_ros2_control/install/gz_ros2_control_demos:/home/control-lab/gz_ros2_control/install/velocity_controllers:/home/control-lab/gz_ros2_control/install/tricycle_steering_controller:/home/control-lab/gz_ros2_control/install/tricycle_controller:/home/control-lab/gz_ros2_control/install/ros2_control_demo_example_8:/home/control-lab/gz_ros2_control/install/ros2_control:/home/control-lab/gz_ros2_control/install/transmission_interface:/home/control-lab/gz_ros2_control/install/ros2_control_demo_example_11:/home/control-lab/gz_ros2_control/install/bicycle_steering_controller:/home/control-lab/gz_ros2_control/install/ackermann_steering_controller:/home/control-lab/gz_ros2_control/install/steering_controllers_library:/home/control-lab/gz_ros2_control/install/ros2_control_demo_example_15:/home/control-lab/gz_ros2_control/install/ros2_control_demo_example_1:/home/control-lab/gz_ros2_control/install/ros2_control_demo_example_9:/home/control-lab/gz_ros2_control/install/ros2_control_demo_example_7:/home/control-lab/gz_ros2_control/install/ros2_control_demo_example_6:/home/control-lab/gz_ros2_control/install/ros2_control_demo_example_13:/home/control-lab/gz_ros2_control/install/ros2_control_demo_example_5:/home/control-lab/gz_ros2_control/install/ros2_control_demo_example_4:/home/control-lab/gz_ros2_control/install/ros2_control_demo_example_2:/home/control-lab/gz_ros2_control/install/ros2_control_demo_example_14:/home/control-lab/gz_ros2_control/install/ros2_control_demo_example_12:/home/control-lab/gz_ros2_control/install/ros2_control_demo_example_10:/home/control-lab/gz_ros2_control/install/hardware_interface_testing:/home/control-lab/gz_ros2_control/install/ros2_control_test_assets:/home/control-lab/gz_ros2_control/install/ros2_control_demo_description:/home/control-lab/gz_ros2_control/install/range_sensor_broadcaster:/home/control-lab/gz_ros2_control/install/position_controllers:/home/control-lab/gz_ros2_control/install/pose_broadcaster:/home/control-lab/gz_ros2_control/install/pid_controller:/home/control-lab/gz_ros2_control/install/mecanum_drive_controller:/home/control-lab/gz_ros2_control/install/joint_trajectory_controller:/home/control-lab/gz_ros2_control/install/joint_state_broadcaster:/home/control-lab/gz_ros2_control/install/imu_sensor_broadcaster:/home/control-lab/gz_ros2_control/install/ign_ros2_control:/home/control-lab/gz_ros2_control/install/gz_ros2_control:/home/control-lab/gz_ros2_control/install/gripper_controllers:/home/control-lab/gz_ros2_control/install/gpio_controllers:/home/control-lab/gz_ros2_control/install/effort_controllers:/home/control-lab/gz_ros2_control/install/forward_command_controller:/home/control-lab/gz_ros2_control/install/force_torque_sensor_broadcaster:/home/control-lab/gz_ros2_control/install/diff_drive_controller:/home/control-lab/gz_ros2_control/install/controller_manager:/home/control-lab/gz_ros2_control/install/admittance_controller:/home/control-lab/gz_ros2_control/install/control_toolbox:/home/control-lab/gz_ros2_control/install/realtime_tools:/home/control-lab/gz_ros2_control/install/kinematics_interface_kdl:/home/control-lab/gz_ros2_control/install/kinematics_interface:/home/control-lab/gz_ros2_control/install/joint_limits:/home/control-lab/gz_ros2_control/install/controller_interface:/home/control-lab/gz_ros2_control/install/hardware_interface:/home/control-lab/gz_ros2_control/install/gz_ros2_control_tests:/home/control-lab/gz_ros2_control/install/controller_manager_msgs:/home/control-lab/gz_ros2_control/install/control_msgs:/home/control-lab/gz_ros2_control/install/rqt_joint_trajectory_controller:/home/control-lab/gz_ros2_control/install/rqt_controller_manager:/home/control-lab/gz_ros2_control/install/ros2controlcli:/home/control-lab/gz_ros2_control/install/ros2_controllers_test_nodes:/opt/ros/humble VIRTUAL_ENV_PROMPT=(px4_env) /usr/bin/cmake --build /home/control-lab/rl_indi/build/il_control_system -- -j32 -l32
+[0.062s] [35m[1mConsolidate compiler generated dependencies of target il_control_system_refactored[0m
+[0.076s] [ 66%] Built target offboard_manager_node
+[0.077s] [ 66%] Built target trajectory_planner_node
+[0.081s] [ 83%] [32mBuilding CXX object CMakeFiles/il_control_system_refactored.dir/src/il_control_system_refactored.cpp.o[0m
+[1.709s] [01m[K/home/control-lab/rl_indi/src/il_control_system/src/il_control_system_refactored.cpp:223:5:[m[K [01;31m[Kerror: [m[Kexpected unqualified-id before ‘[01m[Kelse[m[K’
+[1.709s]   223 |     [01;31m[Kelse[m[K {
+[1.709s]       |     [01;31m[K^~~~[m[K
+[1.711s] [01m[K/home/control-lab/rl_indi/src/il_control_system/src/il_control_system_refactored.cpp:232:5:[m[K [01;31m[Kerror: [m[K‘[01m[Katt_out_[m[K’ does not name a type
+[1.711s]   232 |     [01;31m[Katt_out_[m[K = accel_att_controller_->update(accel_cmd, reference_yaw);
+[1.711s]       |     [01;31m[K^~~~~~~~[m[K
+[1.711s] [01m[K/home/control-lab/rl_indi/src/il_control_system/src/il_control_system_refactored.cpp:238:5:[m[K [01;31m[Kerror: [m[Kexpected unqualified-id before ‘[01m[Kif[m[K’
+[1.711s]   238 |     [01;31m[Kif[m[K (bypass_pid_) {
+[1.711s]       |     [01;31m[K^~[m[K
+[1.711s] [01m[K/home/control-lab/rl_indi/src/il_control_system/src/il_control_system_refactored.cpp:242:7:[m[K [01;31m[Kerror: [m[Kexpected unqualified-id before ‘[01m[Kelse[m[K’
+[1.711s]   242 |     } [01;31m[Kelse[m[K {
+[1.711s]       |       [01;31m[K^~~~[m[K
+[1.711s] [01m[K/home/control-lab/rl_indi/src/il_control_system/src/il_control_system_refactored.cpp:251:5:[m[K [01;31m[Kerror: [m[Kexpected unqualified-id before ‘[01m[Kif[m[K’
+[1.711s]   251 |     [01;31m[Kif[m[K (!enable_il_control_) {
+[1.711s]       |     [01;31m[K^~[m[K
+[1.711s] [01m[K/home/control-lab/rl_indi/src/il_control_system/src/il_control_system_refactored.cpp:259:5:[m[K [01;31m[Kerror: [m[K‘[01m[Kq_desired[m[K’ does not name a type
+[1.711s]   259 |     [01;31m[Kq_desired[m[K = Eigen::AngleAxisf(att_cmd(2), Eigen::Vector3f::UnitZ())
+[1.711s]       |     [01;31m[K^~~~~~~~~[m[K
+[1.712s] [01m[K/home/control-lab/rl_indi/src/il_control_system/src/il_control_system_refactored.cpp:262:5:[m[K [01;31m[Kerror: [m[K‘[01m[Kq_desired[m[K’ does not name a type
+[1.712s]   262 |     [01;31m[Kq_desired[m[K.normalize();
+[1.712s]       |     [01;31m[K^~~~~~~~~[m[K
+[1.712s] [01m[K/home/control-lab/rl_indi/src/il_control_system/src/il_control_system_refactored.cpp:269:20:[m[K [01;31m[Kerror: [m[K‘[01m[Kthrust_cmd[m[K’ is not a type
+[1.712s]   269 |     publishControl([01;31m[Kthrust_cmd[m[K, physical_torque);
+[1.712s]       |                    [01;31m[K^~~~~~~~~~[m[K
+[1.712s] [01m[K/home/control-lab/rl_indi/src/il_control_system/src/il_control_system_refactored.cpp:269:32:[m[K [01;31m[Kerror: [m[K‘[01m[Kphysical_torque[m[K’ is not a type
+[1.712s]   269 |     publishControl(thrust_cmd, [01;31m[Kphysical_torque[m[K);
+[1.712s]       |                                [01;31m[K^~~~~~~~~~~~~~~[m[K
+[1.713s] [01m[K/home/control-lab/rl_indi/src/il_control_system/src/il_control_system_refactored.cpp:269:5:[m[K [01;31m[Kerror: [m[KISO C++ forbids declaration of ‘[01m[KpublishControl[m[K’ with no type [[01;31m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-fpermissive-fpermissive]8;;[m[K]
+[1.713s]   269 |     [01;31m[KpublishControl[m[K(thrust_cmd, physical_torque);
+[1.713s]       |     [01;31m[K^~~~~~~~~~~~~~[m[K
+[1.713s] [01m[K/home/control-lab/rl_indi/src/il_control_system/src/il_control_system_refactored.cpp:271:5:[m[K [01;31m[Kerror: [m[K‘[01m[Kloop_counter_[m[K’ does not name a type
+[1.713s]   271 |     [01;31m[Kloop_counter_[m[K++;
+[1.713s]       |     [01;31m[K^~~~~~~~~~~~~[m[K
+[1.714s] [01m[K/home/control-lab/rl_indi/src/il_control_system/src/il_control_system_refactored.cpp:272:4:[m[K [01;31m[Kerror: [m[Kexpected ‘[01m[K;[m[K’ after class definition
+[1.714s]   272 |   }
+[1.714s]       |    [01;31m[K^[m[K
+[1.714s]       |    [32m[K;[m[K
+[1.717s] [01m[K/home/control-lab/rl_indi/src/il_control_system/src/il_control_system_refactored.cpp:234:31:[m[K [01;31m[Kerror: [m[K‘[01m[Katt_out_[m[K’ was not declared in this scope
+[1.717s]   234 |     Eigen::Vector3f att_cmd = [01;31m[Katt_out_[m[K.attitude_cmd;
+[1.717s]       |                               [01;31m[K^~~~~~~~[m[K
+[1.721s] [01m[K/home/control-lab/rl_indi/src/il_control_system/src/il_control_system_refactored.cpp:235:24:[m[K [01;31m[Kerror: [m[K‘[01m[Katt_out_[m[K’ was not declared in this scope
+[1.721s]   235 |     float thrust_cmd = [01;31m[Katt_out_[m[K.thrust_cmd;
+[1.721s]       |                        [01;31m[K^~~~~~~~[m[K
+[1.724s] [01m[K/home/control-lab/rl_indi/src/il_control_system/src/il_control_system_refactored.cpp:265:39:[m[K [01;31m[Kerror: [m[K‘[01m[Kil_control_[m[K’ was not declared in this scope
+[1.724s]   265 |     Eigen::Vector3f physical_torque = [01;31m[Kil_control_[m[K->update(
+[1.724s]       |                                       [01;31m[K^~~~~~~~~~~[m[K
+[1.727s] [01m[K/home/control-lab/rl_indi/src/il_control_system/src/il_control_system_refactored.cpp:266:9:[m[K [01;31m[Kerror: [m[K‘[01m[Kq_current_[m[K’ was not declared in this scope
+[1.727s]   266 |         [01;31m[Kq_current_[m[K, ang_vel_current_, q_desired, rate_cmd, dt);
+[1.727s]       |         [01;31m[K^~~~~~~~~~[m[K
+[1.732s] [01m[K/home/control-lab/rl_indi/src/il_control_system/src/il_control_system_refactored.cpp:266:21:[m[K [01;31m[Kerror: [m[K‘[01m[Kang_vel_current_[m[K’ was not declared in this scope
+[1.732s]   266 |         q_current_, [01;31m[Kang_vel_current_[m[K, q_desired, rate_cmd, dt);
+[1.732s]       |                     [01;31m[K^~~~~~~~~~~~~~~~[m[K
+[1.735s] [01m[K/home/control-lab/rl_indi/src/il_control_system/src/il_control_system_refactored.cpp:266:50:[m[K [01;31m[Kerror: [m[K‘[01m[Krate_cmd[m[K’ was not declared in this scope; did you mean ‘[01m[Katt_cmd[m[K’?
+[1.735s]   266 |         q_current_, ang_vel_current_, q_desired, [01;31m[Krate_cmd[m[K, dt);
+[1.735s]       |                                                  [01;31m[K^~~~~~~~[m[K
+[1.735s]       |                                                  [32m[Katt_cmd[m[K
+[1.737s] [01m[K/home/control-lab/rl_indi/src/il_control_system/src/il_control_system_refactored.cpp:266:60:[m[K [01;31m[Kerror: [m[K‘[01m[Kdt[m[K’ was not declared in this scope
+[1.737s]   266 |         q_current_, ang_vel_current_, q_desired, rate_cmd, [01;31m[Kdt[m[K);
+[1.737s]       |                                                            [01;31m[K^~[m[K
+[1.743s] [01m[K/home/control-lab/rl_indi/src/il_control_system/src/il_control_system_refactored.cpp:[m[K In constructor ‘[01m[KIlControlSystem::IlControlSystem()[m[K’:
+[1.743s] [01m[K/home/control-lab/rl_indi/src/il_control_system/src/il_control_system_refactored.cpp:25:5:[m[K [01;31m[Kerror: [m[K‘[01m[Kenable_il_control_[m[K’ was not declared in this scope
+[1.743s]    25 |     [01;31m[Kenable_il_control_[m[K       = this->get_parameter("enable_il_control").as_bool();
+[1.743s]       |     [01;31m[K^~~~~~~~~~~~~~~~~~[m[K
+[1.746s] [01m[K/home/control-lab/rl_indi/src/il_control_system/src/il_control_system_refactored.cpp:27:5:[m[K [01;31m[Kerror: [m[K‘[01m[Kbypass_pid_[m[K’ was not declared in this scope
+[1.746s]    27 |     [01;31m[Kbypass_pid_[m[K = this->get_parameter("bypass_pid").as_bool();
+[1.746s]       |     [01;31m[K^~~~~~~~~~~[m[K
+[1.752s] [01m[K/home/control-lab/rl_indi/src/il_control_system/src/il_control_system_refactored.cpp:70:5:[m[K [01;31m[Kerror: [m[K‘[01m[Kpos_controller_[m[K’ was not declared in this scope
+[1.752s]    70 |     [01;31m[Kpos_controller_[m[K        = std::make_unique<PositionController>();
+[1.752s]       |     [01;31m[K^~~~~~~~~~~~~~~[m[K
+[1.761s] [01m[K/home/control-lab/rl_indi/src/il_control_system/src/il_control_system_refactored.cpp:72:5:[m[K [01;31m[Kerror: [m[K‘[01m[Kvel_accel_controller_[m[K’ was not declared in this scope
+[1.761s]    72 |     [01;31m[Kvel_accel_controller_[m[K  = std::make_unique<VelocityToAccelController>(); // Changed!
+[1.761s]       |     [01;31m[K^~~~~~~~~~~~~~~~~~~~~[m[K
+[1.769s] [01m[K/home/control-lab/rl_indi/src/il_control_system/src/il_control_system_refactored.cpp:73:5:[m[K [01;31m[Kerror: [m[K‘[01m[Kaccel_att_controller_[m[K’ was not declared in this scope
+[1.769s]    73 |     [01;31m[Kaccel_att_controller_[m[K  = std::make_unique<AccelToAttitudeController>(); // New!
+[1.769s]       |     [01;31m[K^~~~~~~~~~~~~~~~~~~~~[m[K
+[1.778s] [01m[K/home/control-lab/rl_indi/src/il_control_system/src/il_control_system_refactored.cpp:74:5:[m[K [01;31m[Kerror: [m[K‘[01m[Katt_rate_controller_[m[K’ was not declared in this scope
+[1.778s]    74 |     [01;31m[Katt_rate_controller_[m[K   = std::make_unique<AttitudeToRateController>();
+[1.778s]       |     [01;31m[K^~~~~~~~~~~~~~~~~~~~[m[K
+[1.784s] [01m[K/home/control-lab/rl_indi/src/il_control_system/src/il_control_system_refactored.cpp:103:5:[m[K [01;31m[Kerror: [m[K‘[01m[Kil_control_[m[K’ was not declared in this scope
+[1.784s]   103 |     [01;31m[Kil_control_[m[K = std::make_unique<IlControl>();
+[1.784s]       |     [01;31m[K^~~~~~~~~~~[m[K
+[1.792s] [01m[K/home/control-lab/rl_indi/src/il_control_system/src/il_control_system_refactored.cpp:109:5:[m[K [01;31m[Kerror: [m[K‘[01m[Ksub_pos_setpoint_[m[K’ was not declared in this scope
+[1.792s]   109 |     [01;31m[Ksub_pos_setpoint_[m[K = create_subscription<geometry_msgs::msg::PointStamped>(
+[1.792s]       |     [01;31m[K^~~~~~~~~~~~~~~~~[m[K
+[1.792s] [01m[K/home/control-lab/rl_indi/src/il_control_system/src/il_control_system_refactored.cpp:111:18:[m[K [01;31m[Kerror: [m[K‘[01m[KIl_ControlSystem[m[K’ has not been declared
+[1.792s]   111 |       std::bind(&[01;31m[KIl_ControlSystem[m[K::positionSetpointCb, this, _1));
+[1.792s]       |                  [01;31m[K^~~~~~~~~~~~~~~~[m[K
+[1.796s] [01m[K/home/control-lab/rl_indi/src/il_control_system/src/il_control_system_refactored.cpp:112:5:[m[K [01;31m[Kerror: [m[K‘[01m[Ksub_position_[m[K’ was not declared in this scope
+[1.796s]   112 |     [01;31m[Ksub_position_[m[K = create_subscription<px4_msgs::msg::VehicleLocalPosition>(
+[1.796s]       |     [01;31m[K^~~~~~~~~~~~~[m[K
+[1.796s] [01m[K/home/control-lab/rl_indi/src/il_control_system/src/il_control_system_refactored.cpp:114:18:[m[K [01;31m[Kerror: [m[K‘[01m[KIl_ControlSystem[m[K’ has not been declared
+[1.796s]   114 |       std::bind(&[01;31m[KIl_ControlSystem[m[K::positionCb, this, _1));
+[1.796s]       |                  [01;31m[K^~~~~~~~~~~~~~~~[m[K
+[1.800s] [01m[K/home/control-lab/rl_indi/src/il_control_system/src/il_control_system_refactored.cpp:115:5:[m[K [01;31m[Kerror: [m[K‘[01m[Ksub_attitude_[m[K’ was not declared in this scope
+[1.800s]   115 |     [01;31m[Ksub_attitude_[m[K = create_subscription<px4_msgs::msg::VehicleAttitude>(
+[1.800s]       |     [01;31m[K^~~~~~~~~~~~~[m[K
+[1.800s] [01m[K/home/control-lab/rl_indi/src/il_control_system/src/il_control_system_refactored.cpp:117:18:[m[K [01;31m[Kerror: [m[K‘[01m[KIl_ControlSystem[m[K’ has not been declared
+[1.800s]   117 |       std::bind(&[01;31m[KIl_ControlSystem[m[K::attitudeCb, this, _1));
+[1.800s]       |                  [01;31m[K^~~~~~~~~~~~~~~~[m[K
+[1.804s] [01m[K/home/control-lab/rl_indi/src/il_control_system/src/il_control_system_refactored.cpp:118:5:[m[K [01;31m[Kerror: [m[K‘[01m[Ksub_ang_vel_[m[K’ was not declared in this scope
+[1.804s]   118 |     [01;31m[Ksub_ang_vel_[m[K = create_subscription<px4_msgs::msg::VehicleOdometry>(
+[1.804s]       |     [01;31m[K^~~~~~~~~~~~[m[K
+[1.804s] [01m[K/home/control-lab/rl_indi/src/il_control_system/src/il_control_system_refactored.cpp:120:18:[m[K [01;31m[Kerror: [m[K‘[01m[KIl_ControlSystem[m[K’ has not been declared
+[1.804s]   120 |       std::bind(&[01;31m[KIl_ControlSystem[m[K::angularVelocityCb, this, _1));
+[1.804s]       |                  [01;31m[K^~~~~~~~~~~~~~~~[m[K
+[1.808s] [01m[K/home/control-lab/rl_indi/src/il_control_system/src/il_control_system_refactored.cpp:121:5:[m[K [01;31m[Kerror: [m[K‘[01m[Ksub_direct_cmd_[m[K’ was not declared in this scope
+[1.808s]   121 |     [01;31m[Ksub_direct_cmd_[m[K = create_subscription<std_msgs::msg::Float64MultiArray>(
+[1.808s]       |     [01;31m[K^~~~~~~~~~~~~~~[m[K
+[1.814s] [01m[K/home/control-lab/rl_indi/src/il_control_system/src/il_control_system_refactored.cpp:[m[K In lambda function:
+[1.815s] [01m[K/home/control-lab/rl_indi/src/il_control_system/src/il_control_system_refactored.cpp:125:13:[m[K [01;31m[Kerror: [m[K‘[01m[Kdirect_accel_cmd_[m[K’ was not declared in this scope
+[1.815s]   125 |             [01;31m[Kdirect_accel_cmd_[m[K << msg->data[0], msg->data[1], msg->data[2];
+[1.815s]       |             [01;31m[K^~~~~~~~~~~~~~~~~[m[K
+[1.819s] [01m[K/home/control-lab/rl_indi/src/il_control_system/src/il_control_system_refactored.cpp:127:13:[m[K [01;31m[Kerror: [m[K‘[01m[Kdirect_rate_cmd_[m[K’ was not declared in this scope
+[1.820s]   127 |             [01;31m[Kdirect_rate_cmd_[m[K  << msg->data[3], msg->data[4], msg->data[5];
+[1.820s]       |             [01;31m[K^~~~~~~~~~~~~~~~[m[K
+[1.824s] [01m[K/home/control-lab/rl_indi/src/il_control_system/src/il_control_system_refactored.cpp:129:13:[m[K [01;31m[Kerror: [m[K‘[01m[Kdirect_yaw_cmd_[m[K’ was not declared in this scope
+[1.824s]   129 |             [01;31m[Kdirect_yaw_cmd_[m[K   = msg->data[6];
+[1.824s]       |             [01;31m[K^~~~~~~~~~~~~~~[m[K
+[1.830s] [01m[K/home/control-lab/rl_indi/src/il_control_system/src/il_control_system_refactored.cpp:131:13:[m[K [01;31m[Kerror: [m[K‘[01m[Kdirect_setpoint_received_[m[K’ was not declared in this scope
+[1.831s]   131 |             [01;31m[Kdirect_setpoint_received_[m[K = true;
+[1.831s]       |             [01;31m[K^~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+[1.858s] [01m[K/home/control-lab/rl_indi/src/il_control_system/src/il_control_system_refactored.cpp:[m[K In constructor ‘[01m[KIlControlSystem::IlControlSystem()[m[K’:
+[1.858s] [01m[K/home/control-lab/rl_indi/src/il_control_system/src/il_control_system_refactored.cpp:135:5:[m[K [01;31m[Kerror: [m[K‘[01m[Kpub_rates_setpoint_[m[K’ was not declared in this scope
+[1.858s]   135 |     [01;31m[Kpub_rates_setpoint_[m[K = create_publisher<px4_msgs::msg::VehicleRatesSetpoint>(
+[1.858s]       |     [01;31m[K^~~~~~~~~~~~~~~~~~~[m[K
+[1.864s] [01m[K/home/control-lab/rl_indi/src/il_control_system/src/il_control_system_refactored.cpp:137:5:[m[K [01;31m[Kerror: [m[K‘[01m[Kpub_thrust_[m[K’ was not declared in this scope
+[1.864s]   137 |     [01;31m[Kpub_thrust_[m[K = create_publisher<px4_msgs::msg::VehicleThrustSetpoint>(
+[1.864s]       |     [01;31m[K^~~~~~~~~~~[m[K
+[1.869s] [01m[K/home/control-lab/rl_indi/src/il_control_system/src/il_control_system_refactored.cpp:139:5:[m[K [01;31m[Kerror: [m[K‘[01m[Kpub_torque_[m[K’ was not declared in this scope
+[1.869s]   139 |     [01;31m[Kpub_torque_[m[K = create_publisher<px4_msgs::msg::VehicleTorqueSetpoint>(
+[1.869s]       |     [01;31m[K^~~~~~~~~~~[m[K
+[1.876s] [01m[K/home/control-lab/rl_indi/src/il_control_system/src/il_control_system_refactored.cpp:142:5:[m[K [01;31m[Kerror: [m[K‘[01m[Ktimer_control_loop_[m[K’ was not declared in this scope
+[1.876s]   142 |     [01;31m[Ktimer_control_loop_[m[K = create_wall_timer(
+[1.876s]       |     [01;31m[K^~~~~~~~~~~~~~~~~~~[m[K
+[1.876s] [01m[K/home/control-lab/rl_indi/src/il_control_system/src/il_control_system_refactored.cpp:144:18:[m[K [01;31m[Kerror: [m[K‘[01m[KIl_ControlSystem[m[K’ has not been declared
+[1.876s]   144 |       std::bind(&[01;31m[KIl_ControlSystem[m[K::controlLoopCallback, this));
+[1.876s]       |                  [01;31m[K^~~~~~~~~~~~~~~~[m[K
+[1.881s] [01m[K/home/control-lab/rl_indi/src/il_control_system/src/il_control_system_refactored.cpp:[m[K In member function ‘[01m[Kvoid IlControlSystem::positionSetpointCb(geometry_msgs::msg::PointStamped_<std::allocator<void> >::SharedPtr)[m[K’:
+[1.881s] [01m[K/home/control-lab/rl_indi/src/il_control_system/src/il_control_system_refactored.cpp:160:5:[m[K [01;31m[Kerror: [m[K‘[01m[Kpos_desired_[m[K’ was not declared in this scope; did you mean ‘[01m[Kq_desired[m[K’?
+[1.881s]   160 |     [01;31m[Kpos_desired_[m[K << msg->point.x, msg->point.y, msg->point.z;
+[1.881s]       |     [01;31m[K^~~~~~~~~~~~[m[K
+[1.881s]       |     [32m[Kq_desired[m[K
+[1.887s] [01m[K/home/control-lab/rl_indi/src/il_control_system/src/il_control_system_refactored.cpp:162:5:[m[K [01;31m[Kerror: [m[K‘[01m[Ksetpoint_received_[m[K’ was not declared in this scope
+[1.887s]   162 |     [01;31m[Ksetpoint_received_[m[K = true;
+[1.887s]       |     [01;31m[K^~~~~~~~~~~~~~~~~~[m[K
+[1.892s] [01m[K/home/control-lab/rl_indi/src/il_control_system/src/il_control_system_refactored.cpp:[m[K In member function ‘[01m[Kvoid IlControlSystem::positionCb(px4_msgs::msg::VehicleLocalPosition_<std::allocator<void> >::SharedPtr)[m[K’:
+[1.892s] [01m[K/home/control-lab/rl_indi/src/il_control_system/src/il_control_system_refactored.cpp:167:5:[m[K [01;31m[Kerror: [m[K‘[01m[Kpos_current_[m[K’ was not declared in this scope
+[1.892s]   167 |     [01;31m[Kpos_current_[m[K << msg->x, msg->y, msg->z;
+[1.892s]       |     [01;31m[K^~~~~~~~~~~~[m[K
+[1.896s] [01m[K/home/control-lab/rl_indi/src/il_control_system/src/il_control_system_refactored.cpp:169:5:[m[K [01;31m[Kerror: [m[K‘[01m[Kvel_current_[m[K’ was not declared in this scope
+[1.896s]   169 |     [01;31m[Kvel_current_[m[K << msg->vx, msg->vy, msg->vz;
+[1.896s]       |     [01;31m[K^~~~~~~~~~~~[m[K
+[1.901s] [01m[K/home/control-lab/rl_indi/src/il_control_system/src/il_control_system_refactored.cpp:172:5:[m[K [01;31m[Kerror: [m[K‘[01m[Kposition_valid_[m[K’ was not declared in this scope
+[1.901s]   172 |     [01;31m[Kposition_valid_[m[K = true;
+[1.901s]       |     [01;31m[K^~~~~~~~~~~~~~~[m[K
+[1.905s] [01m[K/home/control-lab/rl_indi/src/il_control_system/src/il_control_system_refactored.cpp:[m[K In member function ‘[01m[Kvoid IlControlSystem::attitudeCb(px4_msgs::msg::VehicleAttitude_<std::allocator<void> >::SharedPtr)[m[K’:
+[1.905s] [01m[K/home/control-lab/rl_indi/src/il_control_system/src/il_control_system_refactored.cpp:178:5:[m[K [01;31m[Kerror: [m[K‘[01m[Kq_current_[m[K’ was not declared in this scope
+[1.905s]   178 |     [01;31m[Kq_current_[m[K = Eigen::Quaternionf(msg->q[0], msg->q[1], msg->q[2], msg->q[3]);
+[1.905s]       |     [01;31m[K^~~~~~~~~~[m[K
+[1.909s] [01m[K/home/control-lab/rl_indi/src/il_control_system/src/il_control_system_refactored.cpp:181:5:[m[K [01;31m[Kerror: [m[K‘[01m[Kroll_current_[m[K’ was not declared in this scope
+[1.910s]   181 |     [01;31m[Kroll_current_[m[K  = std::atan2(2.0f*(qw*qx+qy*qz), 1.0f-2.0f*(qx*qx+qy*qy));
+[1.910s]       |     [01;31m[K^~~~~~~~~~~~~[m[K
+[1.914s] [01m[K/home/control-lab/rl_indi/src/il_control_system/src/il_control_system_refactored.cpp:183:5:[m[K [01;31m[Kerror: [m[K‘[01m[Kpitch_current_[m[K’ was not declared in this scope
+[1.914s]   183 |     [01;31m[Kpitch_current_[m[K = (std::abs(sp)>=1.0f) ? std::copysign(M_PI/2.0f,sp) : std::asin(sp);
+[1.914s]       |     [01;31m[K^~~~~~~~~~~~~~[m[K
+[1.918s] [01m[K/home/control-lab/rl_indi/src/il_control_system/src/il_control_system_refactored.cpp:184:5:[m[K [01;31m[Kerror: [m[K‘[01m[Kyaw_current_[m[K’ was not declared in this scope
+[1.918s]   184 |     [01;31m[Kyaw_current_[m[K = std::atan2(2.0f * (qw * qz + qx * qy), 1.0f - 2.0f * (qy * qy + qz * qz));
+[1.918s]       |     [01;31m[K^~~~~~~~~~~~[m[K
+[1.922s] [01m[K/home/control-lab/rl_indi/src/il_control_system/src/il_control_system_refactored.cpp:185:5:[m[K [01;31m[Kerror: [m[K‘[01m[Kattitude_valid_[m[K’ was not declared in this scope
+[1.922s]   185 |     [01;31m[Kattitude_valid_[m[K = true;
+[1.922s]       |     [01;31m[K^~~~~~~~~~~~~~~[m[K
+[1.929s] [01m[K/home/control-lab/rl_indi/src/il_control_system/src/il_control_system_refactored.cpp:[m[K In member function ‘[01m[Kvoid IlControlSystem::angularVelocityCb(px4_msgs::msg::VehicleOdometry_<std::allocator<void> >::SharedPtr)[m[K’:
+[1.929s] [01m[K/home/control-lab/rl_indi/src/il_control_system/src/il_control_system_refactored.cpp:190:5:[m[K [01;31m[Kerror: [m[K‘[01m[Kang_vel_current_[m[K’ was not declared in this scope
+[1.929s]   190 |     [01;31m[Kang_vel_current_[m[K << msg->angular_velocity[0], msg->angular_velocity[1], msg->angular_velocity[2];
+[1.929s]       |     [01;31m[K^~~~~~~~~~~~~~~~[m[K
+[1.933s] [01m[K/home/control-lab/rl_indi/src/il_control_system/src/il_control_system_refactored.cpp:191:5:[m[K [01;31m[Kerror: [m[K‘[01m[Kang_vel_valid_[m[K’ was not declared in this scope
+[1.933s]   191 |     [01;31m[Kang_vel_valid_[m[K   = true;
+[1.933s]       |     [01;31m[K^~~~~~~~~~~~~~[m[K
+[1.938s] [01m[K/home/control-lab/rl_indi/src/il_control_system/src/il_control_system_refactored.cpp:[m[K In member function ‘[01m[Kvoid IlControlSystem::controlLoopCallback()[m[K’:
+[1.938s] [01m[K/home/control-lab/rl_indi/src/il_control_system/src/il_control_system_refactored.cpp:196:10:[m[K [01;31m[Kerror: [m[K‘[01m[Kposition_valid_[m[K’ was not declared in this scope
+[1.938s]   196 |     if (![01;31m[Kposition_valid_[m[K || !ang_vel_valid_ || !attitude_valid_) {
+[1.938s]       |          [01;31m[K^~~~~~~~~~~~~~~[m[K
+[1.942s] [01m[K/home/control-lab/rl_indi/src/il_control_system/src/il_control_system_refactored.cpp:196:30:[m[K [01;31m[Kerror: [m[K‘[01m[Kang_vel_valid_[m[K’ was not declared in this scope
+[1.942s]   196 |     if (!position_valid_ || ![01;31m[Kang_vel_valid_[m[K || !attitude_valid_) {
+[1.942s]       |                              [01;31m[K^~~~~~~~~~~~~~[m[K
+[1.947s] [01m[K/home/control-lab/rl_indi/src/il_control_system/src/il_control_system_refactored.cpp:196:49:[m[K [01;31m[Kerror: [m[K‘[01m[Kattitude_valid_[m[K’ was not declared in this scope
+[1.947s]   196 |     if (!position_valid_ || !ang_vel_valid_ || ![01;31m[Kattitude_valid_[m[K) {
+[1.947s]       |                                                 [01;31m[K^~~~~~~~~~~~~~~[m[K
+[1.951s] [01m[K/home/control-lab/rl_indi/src/il_control_system/src/il_control_system_refactored.cpp:200:10:[m[K [01;31m[Kerror: [m[K‘[01m[Kbypass_pid_[m[K’ was not declared in this scope
+[1.951s]   200 |     if (![01;31m[Kbypass_pid_[m[K && !setpoint_received_) return;
+[1.951s]       |          [01;31m[K^~~~~~~~~~~[m[K
+[1.956s] [01m[K/home/control-lab/rl_indi/src/il_control_system/src/il_control_system_refactored.cpp:200:26:[m[K [01;31m[Kerror: [m[K‘[01m[Ksetpoint_received_[m[K’ was not declared in this scope
+[1.956s]   200 |     if (!bypass_pid_ && ![01;31m[Ksetpoint_received_[m[K) return;
+[1.956s]       |                          [01;31m[K^~~~~~~~~~~~~~~~~~[m[K
+[1.960s] [01m[K/home/control-lab/rl_indi/src/il_control_system/src/il_control_system_refactored.cpp:201:9:[m[K [01;31m[Kerror: [m[K‘[01m[Kbypass_pid_[m[K’ was not declared in this scope
+[1.960s]   201 |     if ([01;31m[Kbypass_pid_[m[K && !direct_setpoint_received_) return;
+[1.960s]       |         [01;31m[K^~~~~~~~~~~[m[K
+[1.966s] [01m[K/home/control-lab/rl_indi/src/il_control_system/src/il_control_system_refactored.cpp:201:25:[m[K [01;31m[Kerror: [m[K‘[01m[Kdirect_setpoint_received_[m[K’ was not declared in this scope
+[1.966s]   201 |     if (bypass_pid_ && ![01;31m[Kdirect_setpoint_received_[m[K) return;
+[1.966s]       |                         [01;31m[K^~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+[1.972s] [01m[K/home/control-lab/rl_indi/src/il_control_system/src/il_control_system_refactored.cpp:204:23:[m[K [01;31m[Kerror: [m[K‘[01m[Kcontrol_loop_prev_time_[m[K’ was not declared in this scope
+[1.972s]   204 |     float dt = (now - [01;31m[Kcontrol_loop_prev_time_[m[K).seconds();
+[1.972s]       |                       [01;31m[K^~~~~~~~~~~~~~~~~~~~~~~[m[K
+[1.975s] [01m[K/home/control-lab/rl_indi/src/il_control_system/src/il_control_system_refactored.cpp:212:10:[m[K [01;31m[Kerror: [m[K‘[01m[Kbypass_pid_[m[K’ was not declared in this scope
+[1.975s]   212 |     if (![01;31m[Kbypass_pid_[m[K) {
+[1.976s]       |          [01;31m[K^~~~~~~~~~~[m[K
+[1.979s] [01m[K/home/control-lab/rl_indi/src/il_control_system/src/il_control_system_refactored.cpp:213:23:[m[K [01;31m[Kerror: [m[K‘[01m[Kyaw_current_[m[K’ was not declared in this scope
+[1.979s]   213 |       reference_yaw = [01;31m[Kyaw_current_[m[K;
+[1.979s]       |                       [01;31m[K^~~~~~~~~~~~[m[K
+[1.983s] [01m[K/home/control-lab/rl_indi/src/il_control_system/src/il_control_system_refactored.cpp:214:11:[m[K [01;31m[Kerror: [m[K‘[01m[Kloop_counter_[m[K’ was not declared in this scope
+[1.983s]   214 |       if ([01;31m[Kloop_counter_[m[K % 5 == 0) { // Position/Velocity run at 50Hz (250/5)
+[1.983s]       |           [01;31m[K^~~~~~~~~~~~~[m[K
+[1.988s] [01m[K/home/control-lab/rl_indi/src/il_control_system/src/il_control_system_refactored.cpp:215:35:[m[K [01;31m[Kerror: [m[K‘[01m[Kpos_controller_[m[K’ was not declared in this scope
+[1.988s]   215 |         Eigen::Vector3f vel_cmd = [01;31m[Kpos_controller_[m[K->update(pos_desired_, pos_current_);
+[1.988s]       |                                   [01;31m[K^~~~~~~~~~~~~~~[m[K
+[1.991s] [01m[K/home/control-lab/rl_indi/src/il_control_system/src/il_control_system_refactored.cpp:215:59:[m[K [01;31m[Kerror: [m[K‘[01m[Kpos_desired_[m[K’ was not declared in this scope; did you mean ‘[01m[Kq_desired[m[K’?
+[1.991s]   215 |         Eigen::Vector3f vel_cmd = pos_controller_->update([01;31m[Kpos_desired_[m[K, pos_current_);
+[1.991s]       |                                                           [01;31m[K^~~~~~~~~~~~[m[K
+[1.991s]       |                                                           [32m[Kq_desired[m[K
+[1.995s] [01m[K/home/control-lab/rl_indi/src/il_control_system/src/il_control_system_refactored.cpp:215:73:[m[K [01;31m[Kerror: [m[K‘[01m[Kpos_current_[m[K’ was not declared in this scope
+[1.995s]   215 |         Eigen::Vector3f vel_cmd = pos_controller_->update(pos_desired_, [01;31m[Kpos_current_[m[K);
+[1.995s]       |                                                                         [01;31m[K^~~~~~~~~~~~[m[K
+[2.000s] [01m[K/home/control-lab/rl_indi/src/il_control_system/src/il_control_system_refactored.cpp:216:21:[m[K [01;31m[Kerror: [m[K‘[01m[Kvel_accel_controller_[m[K’ was not declared in this scope
+[2.000s]   216 |         accel_cmd = [01;31m[Kvel_accel_controller_[m[K->update(vel_cmd, vel_current_);
+[2.001s]       |                     [01;31m[K^~~~~~~~~~~~~~~~~~~~~[m[K
+[2.004s] [01m[K/home/control-lab/rl_indi/src/il_control_system/src/il_control_system_refactored.cpp:216:60:[m[K [01;31m[Kerror: [m[K‘[01m[Kvel_current_[m[K’ was not declared in this scope
+[2.004s]   216 |         accel_cmd = vel_accel_controller_->update(vel_cmd, [01;31m[Kvel_current_[m[K);
+[2.004s]       |                                                            [01;31m[K^~~~~~~~~~~~[m[K
+[2.008s] [01m[K/home/control-lab/rl_indi/src/il_control_system/src/il_control_system_refactored.cpp:217:9:[m[K [01;31m[Kerror: [m[K‘[01m[Klast_accel_cmd_[m[K’ was not declared in this scope
+[2.009s]   217 |         [01;31m[Klast_accel_cmd_[m[K = accel_cmd;
+[2.009s]       |         [01;31m[K^~~~~~~~~~~~~~~[m[K
+[2.013s] [01m[K/home/control-lab/rl_indi/src/il_control_system/src/il_control_system_refactored.cpp:219:21:[m[K [01;31m[Kerror: [m[K‘[01m[Klast_accel_cmd_[m[K’ was not declared in this scope
+[2.013s]   219 |         accel_cmd = [01;31m[Klast_accel_cmd_[m[K; // Use saved value
+[2.013s]       |                     [01;31m[K^~~~~~~~~~~~~~~[m[K
+[2.013s] [01m[K/home/control-lab/rl_indi/src/il_control_system/src/il_control_system_refactored.cpp:[m[K In function ‘[01m[Kvoid publishRatesSetpoint(const Vector3f&, float)[m[K’:
+[2.013s] [01m[K/home/control-lab/rl_indi/src/il_control_system/src/il_control_system_refactored.cpp:276:26:[m[K [01;31m[Kerror: [m[Kinvalid use of ‘[01m[Kthis[m[K’ in non-member function
+[2.013s]   276 |     msg.timestamp      = [01;31m[Kthis[m[K->get_clock()->now().nanoseconds() / 1000;
+[2.013s]       |                          [01;31m[K^~~~[m[K
+[2.016s] [01m[K/home/control-lab/rl_indi/src/il_control_system/src/il_control_system_refactored.cpp:281:5:[m[K [01;31m[Kerror: [m[K‘[01m[Kpub_rates_setpoint_[m[K’ was not declared in this scope
+[2.016s]   281 |     [01;31m[Kpub_rates_setpoint_[m[K->publish(msg);
+[2.017s]       |     [01;31m[K^~~~~~~~~~~~~~~~~~~[m[K
+[2.017s] [01m[K/home/control-lab/rl_indi/src/il_control_system/src/il_control_system_refactored.cpp:[m[K In function ‘[01m[Kvoid publishControl(float, const Vector3f&)[m[K’:
+[2.017s] [01m[K/home/control-lab/rl_indi/src/il_control_system/src/il_control_system_refactored.cpp:287:28:[m[K [01;31m[Kerror: [m[Kinvalid use of ‘[01m[Kthis[m[K’ in non-member function
+[2.017s]   287 |     thrust_msg.timestamp = [01;31m[Kthis[m[K->get_clock()->now().nanoseconds() / 1000;
+[2.017s]       |                            [01;31m[K^~~~[m[K
+[2.019s] [01m[K/home/control-lab/rl_indi/src/il_control_system/src/il_control_system_refactored.cpp:289:5:[m[K [01;31m[Kerror: [m[K‘[01m[Kpub_thrust_[m[K’ was not declared in this scope
+[2.019s]   289 |     [01;31m[Kpub_thrust_[m[K->publish(thrust_msg);
+[2.019s]       |     [01;31m[K^~~~~~~~~~~[m[K
+[2.019s] [01m[K/home/control-lab/rl_indi/src/il_control_system/src/il_control_system_refactored.cpp:308:28:[m[K [01;31m[Kerror: [m[Kinvalid use of ‘[01m[Kthis[m[K’ in non-member function
+[2.019s]   308 |     torque_msg.timestamp = [01;31m[Kthis[m[K->get_clock()->now().nanoseconds() / 1000;
+[2.019s]       |                            [01;31m[K^~~~[m[K
+[2.021s] [01m[K/home/control-lab/rl_indi/src/il_control_system/src/il_control_system_refactored.cpp:312:5:[m[K [01;31m[Kerror: [m[K‘[01m[Kpub_torque_[m[K’ was not declared in this scope
+[2.021s]   312 |     [01;31m[Kpub_torque_[m[K->publish(torque_msg);
+[2.021s]       |     [01;31m[K^~~~~~~~~~~[m[K
+[2.025s] [01m[K/home/control-lab/rl_indi/src/il_control_system/src/il_control_system_refactored.cpp:[m[K At global scope:
+[2.025s] [01m[K/home/control-lab/rl_indi/src/il_control_system/src/il_control_system_refactored.cpp:331:20:[m[K [01;31m[Kerror: [m[K‘[01m[KIl_Control[m[K’ was not declared in this scope
+[2.025s]   331 |    std::unique_ptr<[01;31m[KIl_Control[m[K>                         il_control_;
+[2.025s]       |                    [01;31m[K^~~~~~~~~~[m[K
+[2.025s] [01m[K/home/control-lab/rl_indi/src/il_control_system/src/il_control_system_refactored.cpp:331:30:[m[K [01;31m[Kerror: [m[Ktemplate argument 1 is invalid
+[2.025s]   331 |    std::unique_ptr<Il_Control[01;31m[K>[m[K                         il_control_;
+[2.025s]       |                              [01;31m[K^[m[K
+[2.025s] [01m[K/home/control-lab/rl_indi/src/il_control_system/src/il_control_system_refactored.cpp:331:30:[m[K [01;31m[Kerror: [m[Ktemplate argument 2 is invalid
+[2.102s] [01m[K/home/control-lab/rl_indi/src/il_control_system/src/il_control_system_refactored.cpp:377:1:[m[K [01;31m[Kerror: [m[Kexpected declaration before ‘[01m[K}[m[K’ token
+[2.102s]   377 | [01;31m[K}[m[K;
+[2.102s]       | [01;31m[K^[m[K
+[3.767s] gmake[2]: *** [CMakeFiles/il_control_system_refactored.dir/build.make:76: CMakeFiles/il_control_system_refactored.dir/src/il_control_system_refactored.cpp.o] Error 1
+[3.767s] gmake[1]: *** [CMakeFiles/Makefile2:141: CMakeFiles/il_control_system_refactored.dir/all] Error 2
+[3.767s] gmake: *** [Makefile:146: all] Error 2
+[3.769s] Invoked command in '/home/control-lab/rl_indi/build/il_control_system' returned '2': CMAKE_PREFIX_PATH=/home/control-lab/rl_indi/install/px4_msgs:/home/control-lab/rl_indi/install/asmc_system:/home/control-lab/rl_indi/install/adaptive_indi_system:/home/control-lab/gz_ros2_control/install/ros2_controllers:/home/control-lab/gz_ros2_control/install/ros2_control_demos:/home/control-lab/gz_ros2_control/install/ros2_control_demo_example_3:/home/control-lab/gz_ros2_control/install/ign_ros2_control_demos:/home/control-lab/gz_ros2_control/install/gz_ros2_control_demos:/home/control-lab/gz_ros2_control/install/velocity_controllers:/home/control-lab/gz_ros2_control/install/tricycle_steering_controller:/home/control-lab/gz_ros2_control/install/tricycle_controller:/home/control-lab/gz_ros2_control/install/ros2_control_demo_example_8:/home/control-lab/gz_ros2_control/install/ros2_control:/home/control-lab/gz_ros2_control/install/transmission_interface:/home/control-lab/gz_ros2_control/install/ros2_control_demo_example_11:/home/control-lab/gz_ros2_control/install/bicycle_steering_controller:/home/control-lab/gz_ros2_control/install/ackermann_steering_controller:/home/control-lab/gz_ros2_control/install/steering_controllers_library:/home/control-lab/gz_ros2_control/install/ros2_control_demo_example_15:/home/control-lab/gz_ros2_control/install/ros2_control_demo_example_1:/home/control-lab/gz_ros2_control/install/ros2_control_demo_example_9:/home/control-lab/gz_ros2_control/install/ros2_control_demo_example_7:/home/control-lab/gz_ros2_control/install/ros2_control_demo_example_6:/home/control-lab/gz_ros2_control/install/ros2_control_demo_example_13:/home/control-lab/gz_ros2_control/install/ros2_control_demo_example_5:/home/control-lab/gz_ros2_control/install/ros2_control_demo_example_4:/home/control-lab/gz_ros2_control/install/ros2_control_demo_example_2:/home/control-lab/gz_ros2_control/install/ros2_control_demo_example_14:/home/control-lab/gz_ros2_control/install/ros2_control_demo_example_12:/home/control-lab/gz_ros2_control/install/ros2_control_demo_example_10:/home/control-lab/gz_ros2_control/install/hardware_interface_testing:/home/control-lab/gz_ros2_control/install/ros2_control_test_assets:/home/control-lab/gz_ros2_control/install/ros2_control_demo_description:/home/control-lab/gz_ros2_control/install/range_sensor_broadcaster:/home/control-lab/gz_ros2_control/install/position_controllers:/home/control-lab/gz_ros2_control/install/pose_broadcaster:/home/control-lab/gz_ros2_control/install/pid_controller:/home/control-lab/gz_ros2_control/install/mecanum_drive_controller:/home/control-lab/gz_ros2_control/install/joint_trajectory_controller:/home/control-lab/gz_ros2_control/install/joint_state_broadcaster:/home/control-lab/gz_ros2_control/install/imu_sensor_broadcaster:/home/control-lab/gz_ros2_control/install/ign_ros2_control:/home/control-lab/gz_ros2_control/install/gz_ros2_control:/home/control-lab/gz_ros2_control/install/gripper_controllers:/home/control-lab/gz_ros2_control/install/gpio_controllers:/home/control-lab/gz_ros2_control/install/effort_controllers:/home/control-lab/gz_ros2_control/install/forward_command_controller:/home/control-lab/gz_ros2_control/install/force_torque_sensor_broadcaster:/home/control-lab/gz_ros2_control/install/diff_drive_controller:/home/control-lab/gz_ros2_control/install/controller_manager:/home/control-lab/gz_ros2_control/install/admittance_controller:/home/control-lab/gz_ros2_control/install/control_toolbox:/home/control-lab/gz_ros2_control/install/realtime_tools:/home/control-lab/gz_ros2_control/install/kinematics_interface_kdl:/home/control-lab/gz_ros2_control/install/kinematics_interface:/home/control-lab/gz_ros2_control/install/joint_limits:/home/control-lab/gz_ros2_control/install/controller_interface:/home/control-lab/gz_ros2_control/install/hardware_interface:/home/control-lab/gz_ros2_control/install/gz_ros2_control_tests:/home/control-lab/gz_ros2_control/install/controller_manager_msgs:/home/control-lab/gz_ros2_control/install/control_msgs:/home/control-lab/gz_ros2_control/install/rqt_joint_trajectory_controller:/home/control-lab/gz_ros2_control/install/rqt_controller_manager:/home/control-lab/gz_ros2_control/install/ros2controlcli:/home/control-lab/gz_ros2_control/install/ros2_controllers_test_nodes:/opt/ros/humble VIRTUAL_ENV_PROMPT=(px4_env) /usr/bin/cmake --build /home/control-lab/rl_indi/build/il_control_system -- -j32 -l32
