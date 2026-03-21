@@ -1,0 +1,41 @@
+# ROS2 build artifacts
+build/
+install/
+log/
+
+# Colcon / ament
+*.log
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# VSCode
+.vscode/
+*.code-workspace
+
+# CMake
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+Makefile
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Large DB / temp files
+*.db
+*.sqlite
+*.sqlite3
+
+# Backup / temp
+*~
+*.swp
+*.bak
+
+# ROS bag files (optional, comment if needed)
+*.bag
+*.db3

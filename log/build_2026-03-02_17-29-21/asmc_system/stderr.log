@@ -1,9 +1,0 @@
-In file included from [01m[K/home/control-lab/rl_indi/src/asmc_system/src/asmc_system_refactored.cpp:11[m[K:
-[01m[K/home/control-lab/rl_indi/src/asmc_system/include/asmc_system/asmc.hpp:[m[K In member function ‘[01m[KEigen::Vector3f asmc_system::ASMC::update(const Quaternionf&, const Vector3f&, const Quaternionf&, const Vector3f&, const Vector3f&, float)[m[K’:
-[01m[K/home/control-lab/rl_indi/src/asmc_system/include/asmc_system/asmc.hpp:78:15:[m[K [01;31m[Kerror: [m[K‘[01m[KKp0_dot[m[K’ was not declared in this scope; did you mean ‘[01m[KKp0_dot_[m[K’?
-   78 |     Kp0_t_ += [01;31m[KKp0_dot[m[K * dt;
-      |               [01;31m[K^~~~~~~[m[K
-      |               [32m[KKp0_dot_[m[K
-gmake[2]: *** [CMakeFiles/asmc_system_refactored.dir/build.make:76: CMakeFiles/asmc_system_refactored.dir/src/asmc_system_refactored.cpp.o] Error 1
-gmake[1]: *** [CMakeFiles/Makefile2:141: CMakeFiles/asmc_system_refactored.dir/all] Error 2
-gmake: *** [Makefile:146: all] Error 2
