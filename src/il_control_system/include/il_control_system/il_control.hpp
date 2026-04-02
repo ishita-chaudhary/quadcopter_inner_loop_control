@@ -10,72 +10,6 @@ namespace il_control_system
 {
 
 // ============================================================================
-// 2nd-Order Low-Pass Filter (Based on Smeur 2016 Eq. 15)
-// H(s) = w_n^2 / (s^2 + 2*zeta*w_n*s + w_n^2)
-// Discretized using Bilinear Transform (Tustin's method)
-// ============================================================================
-class SecondOrderFilter
-{
-public:
-    SecondOrderFilter() : b0(0), b1(0), b2(0), a1(0), a2(0), x1(0), x2(0), y1(0), y2(0), configured(false) {}
-
-    void configure(float wn, float zeta, float sample_rate_hz)
-    {
-        float T = 1.0f / sample_rate_hz;
-        float c = 2.0f / T;
-        
-        float a0 = (c * c) + (2.0f * zeta * wn * c) + (wn * wn);
-        
-        b0 = (wn * wn) / a0;
-        b1 = (2.0f * wn * wn) / a0;
-        b2 = (wn * wn) / a0;
-        
-        a1 = (-2.0f * c * c + 2.0f * wn * wn) / a0;
-        a2 = (c * c - 2.0f * zeta * wn * c + wn * wn) / a0;
-        
-        configured = true;
-        reset();
-    }
-
-    float update(float x)
-    {
-        if (!configured) return x;
-        float y = b0 * x + b1 * x1 + b2 * x2 - a1 * y1 - a2 * y2;
-        
-        x2 = x1; x1 = x;
-        y2 = y1; y1 = y;
-        
-        return y;
-    }
-
-    void reset() { x1 = x2 = y1 = y2 = 0.0f; }
-
-private:
-    float b0, b1, b2, a1, a2;
-    float x1, x2, y1, y2;
-    bool configured;
-};
-
-class Vector3Filter
-{
-public:
-    void configure(float wn, float zeta, float sample_rate_hz) {
-        for (int i = 0; i < 3; i++) filters[i].configure(wn, zeta, sample_rate_hz);
-    }
-    
-    Eigen::Vector3f update(const Eigen::Vector3f& v) {
-        return Eigen::Vector3f(filters[0].update(v(0)), filters[1].update(v(1)), filters[2].update(v(2)));
-    }
-    
-    void reset() {
-        for (int i = 0; i < 3; i++) filters[i].reset();
-    }
-
-private:
-    SecondOrderFilter filters[3];
-};
-
-// ============================================================================
 // Adaptive Torque Inner Loop (Synchronized)
 // ============================================================================
 
@@ -88,8 +22,8 @@ public:
         Jbar_ = Eigen::Vector3f(0.06f, 0.06f, 0.10f).asDiagonal();
         
         // Default Gains
-        Kp_eta_ = Eigen::Vector3f(12.0f, 12.0f, 6.0f).asDiagonal();
-        Kd_eta_ = Eigen::Vector3f(0.8f, 0.8f, 0.5f).asDiagonal();
+        Kp_eta_ = Eigen::Vector3f(0.8f, 0.8f, 0.5f).asDiagonal();
+        Kd_eta_ = Eigen::Vector3f(4.0f, 4.0f, 2.0f).asDiagonal();
         // Kp_eta_ = Eigen::Vector3f(8.0f, 8.0f, 4.0f).asDiagonal();
         // Kd_eta_ = Eigen::Vector3f(0.8f, 0.8f, 0.5f).asDiagonal();
         
@@ -104,9 +38,18 @@ public:
     void reset()
     {
         prev_tau_.setZero();
-        prev_omega_dot_.setZero();
         prev_omega_.setZero();
+        prev_omega_timestamp_us_ = 0;
         prev_omega_ff_current_.setZero();
+        
+        filtered_omega_dot_.setZero();
+        filtered_tau_.setZero();
+        Hhat_bar_.setZero();
+        
+        // Multi-rate integration memory
+        integral_tau_.setZero();
+        time_since_last_meas_ = 0.0f;
+        
         first_run_ = true;
     }
 
@@ -126,12 +69,64 @@ public:
     Eigen::Vector3f update(
         const Eigen::Quaternionf& q_current,
         const Eigen::Vector3f& omega_current,
+        uint64_t omega_timestamp_us,
         const Eigen::Quaternionf& q_desired,
         const Eigen::Vector3f& omega_d_ff,
-        float dt)
+        float loop_dt)
     {
         rclcpp::Clock steady_clock(RCL_STEADY_TIME);
         
+        // // 1. Rotation Matrices
+        // Eigen::Matrix3f R = q_current.toRotationMatrix();
+        // Eigen::Matrix3f R_d = q_desired.toRotationMatrix();
+
+        // // 2. SO(3) Attitude Error
+        // Eigen::Matrix3f R_err_mat = R_d.transpose() * R - R.transpose() * R_d;
+        // Eigen::Vector3f e_R = 0.5f * vee(R_err_mat);
+
+        // // 3. Map Rate Feedforward
+        // Eigen::Vector3f omega_ff_current;
+        // if (use_current_body_rate_frame_) {
+        //     omega_ff_current = omega_d_ff;
+        // } else {
+        //     omega_ff_current = R.transpose() * R_d * omega_d_ff;
+        // }
+
+        // // 4. Rate Error
+        // Eigen::Vector3f e_omega = omega_current - omega_ff_current;
+
+        // // 5. Finite Differences (Accelerations)
+        // Eigen::Vector3f raw_omega_dot_meas = Eigen::Vector3f::Zero();
+        // Eigen::Vector3f omega_ff_dot = Eigen::Vector3f::Zero();
+        
+        // if (!first_run_ && dt > 0.0f) {
+        //     raw_omega_dot_meas = (omega_current - prev_omega_) / dt;    
+        //     // --- APPLY LOW PASS FILTER TO ACCELERATION ---
+        //     filtered_omega_dot_ = (alpha_filter_ * raw_omega_dot_meas) + 
+        //                           ((1.0f - alpha_filter_) * filtered_omega_dot_);
+
+        //     omega_ff_dot = (omega_ff_current - prev_omega_ff_current_) / dt;
+                                  
+        //     // --- APPLY LOW PASS FILTER TO PREVIOUS TORQUE ---
+        //     // Motors have a delay. The drone doesn't instantly feel the torque we requested last loop.
+        //     filtered_tau_ = (alpha_filter_ * prev_tau_) + 
+        //                     ((1.0f - alpha_filter_) * filtered_tau_);
+        // } else {
+        //     filtered_omega_dot_ = Eigen::Vector3f::Zero();
+        //     filtered_tau_ = Eigen::Vector3f::Zero();
+        // }
+
+        // // 6. Delay-based Lumped Uncertainty Estimate (Eq 14)
+        // Eigen::Vector3f Hhat_bar = filtered_tau_ - Jbar_ * filtered_omega_dot_;
+
+        // // Precompute terms to safely print them
+        // Eigen::Vector3f kp_term = -Kp_eta_ * e_R;
+        // Eigen::Vector3f kd_term = -Kd_eta_ * e_omega;
+        // Eigen::Vector3f Ia_term = Jbar_ * (omega_ff_dot + kp_term + kd_term);
+
+        // // 7. Adaptive Torque Law (Eq 13)
+        // Eigen::Vector3f torque_unsat = Ia_term + Hhat_bar;
+
         // 1. Rotation Matrices
         Eigen::Matrix3f R = q_current.toRotationMatrix();
         Eigen::Matrix3f R_d = q_desired.toRotationMatrix();
@@ -151,37 +146,78 @@ public:
         // 4. Rate Error
         Eigen::Vector3f e_omega = omega_current - omega_ff_current;
 
-        // 5. Finite Differences (Accelerations)
-        Eigen::Vector3f raw_omega_dot_meas = Eigen::Vector3f::Zero();
-        Eigen::Vector3f omega_ff_dot = Eigen::Vector3f::Zero();
+        // ====================================================================
+        // 5. ASYNCHRONOUS MULTI-RATE ESTIMATOR
+        // ====================================================================
         
-        if (!first_run_ && dt > 0.0f) {
-            raw_omega_dot_meas = (omega_current - prev_omega_) / dt;    
-            // --- APPLY LOW PASS FILTER TO ACCELERATION ---
-            filtered_omega_dot_ = (alpha_filter_ * raw_omega_dot_meas) + 
-                                  ((1.0f - alpha_filter_) * filtered_omega_dot_);
+        // Integrate the torque applied over this control step (Zero-Order Hold assumption)
+        integral_tau_ += prev_tau_ * loop_dt;
+        time_since_last_meas_ += loop_dt;
 
-            omega_ff_dot = (omega_ff_current - prev_omega_ff_current_) / dt;
-                                  
-            // --- APPLY LOW PASS FILTER TO PREVIOUS TORQUE ---
-            // Motors have a delay. The drone doesn't instantly feel the torque we requested last loop.
-            filtered_tau_ = (alpha_filter_ * prev_tau_) + 
-                            ((1.0f - alpha_filter_) * filtered_tau_);
-        } else {
-            filtered_omega_dot_ = Eigen::Vector3f::Zero();
-            filtered_tau_ = Eigen::Vector3f::Zero();
+        bool is_new_omega = (omega_timestamp_us > prev_omega_timestamp_us_);
+        
+        if (is_new_omega && !first_run_ && prev_omega_timestamp_us_ > 0) {
+            
+            // Calculate actual dt between gyro samples (typically ~0.01s for 100Hz)
+            float dt_meas = (omega_timestamp_us - prev_omega_timestamp_us_) * 1e-6f;
+            
+            // Sanity check to prevent divide by zero if timestamps get corrupted
+            if (dt_meas > 0.0001f && time_since_last_meas_ > 0.0001f) {
+                
+                // Average acceleration over the measurement window
+                Eigen::Vector3f raw_omega_dot_meas = (omega_current - prev_omega_) / dt_meas;    
+                
+                // Average torque applied over the EXACT same measurement window
+                Eigen::Vector3f tau_avg = integral_tau_ / time_since_last_meas_;
+
+                // --- APPLY SYNCHRONIZED LOW PASS FILTERS ---
+                filtered_omega_dot_ = (alpha_filter_ * raw_omega_dot_meas) + 
+                                      ((1.0f - alpha_filter_) * filtered_omega_dot_);
+
+                filtered_tau_ = (alpha_filter_ * tau_avg) + 
+                                ((1.0f - alpha_filter_) * filtered_tau_);
+                                
+                // --- UPDATE DISTURBANCE ESTIMATOR ---
+                // Physically accurate: Average Torque - J * Average Acceleration
+                Hhat_bar_ = filtered_tau_ - Jbar_ * filtered_omega_dot_;
+            }
+            
+            // Reset integrators for the next window
+            integral_tau_.setZero();
+            time_since_last_meas_ = 0.0f;
+            
+            // Save state
+            prev_omega_ = omega_current;
+            prev_omega_timestamp_us_ = omega_timestamp_us;
+        } else if (is_new_omega && first_run_) {
+            // First time receiving data, just initialize timestamps
+            prev_omega_ = omega_current;
+            prev_omega_timestamp_us_ = omega_timestamp_us;
         }
 
-        // 6. Delay-based Lumped Uncertainty Estimate (Eq 14)
-        Eigen::Vector3f Hhat_bar = filtered_tau_ - Jbar_ * filtered_omega_dot_;
+        // ====================================================================
+        // 6. CONTROL LAW
+        // ====================================================================
+        
+        // Feedforward Acceleration (using loop_dt for smooth command transitions)
+        Eigen::Vector3f omega_ff_dot = Eigen::Vector3f::Zero();
+        if (!first_run_ && loop_dt > 0.0f) {
+            omega_ff_dot = (omega_ff_current - prev_omega_ff_current_) / loop_dt;
+        }
 
-        // Precompute terms to safely print them
         Eigen::Vector3f kp_term = -Kp_eta_ * e_R;
         Eigen::Vector3f kd_term = -Kd_eta_ * e_omega;
         Eigen::Vector3f Ia_term = Jbar_ * (omega_ff_dot + kp_term + kd_term);
 
-        // 7. Adaptive Torque Law (Eq 13)
-        Eigen::Vector3f torque_unsat = Ia_term + Hhat_bar;
+        // Adaptive Torque Law (Eq 13)
+        // Uses the Hhat_bar_ which only updates when fresh gyro data arrives
+        Eigen::Vector3f torque_unsat = Ia_term + Hhat_bar_;
+
+        // 7. Symmetric Clipping
+        Eigen::Vector3f torque_cmd;
+        for (int i = 0; i < 3; i++) {
+            torque_cmd(i) = std::max(-torque_limits_(i), std::min(torque_limits_(i), torque_unsat(i)));
+        }
 
         // RCLCPP_INFO_THROTTLE(
         //     rclcpp::get_logger("IL_Debug"), steady_clock, 4,
@@ -220,7 +256,7 @@ public:
         
         // RCLCPP_INFO_THROTTLE(
         //     rclcpp::get_logger("IL_Debug"), steady_clock, 4,
-        //     "H_pred: [%.2f, %.2f, %.2f]", Hhat_bar(0), Hhat_bar(1), Hhat_bar(2)
+        //     "H_pred: [%.2f, %.2f, %.2f]", Hhat_bar_(0), Hhat_bar_(1), Hhat_bar_(2)
         // );
 
         // RCLCPP_INFO_THROTTLE(
@@ -240,18 +276,23 @@ public:
         //     "tau_unsat: [%.2f, %.2f, %.2f]", torque_unsat(0), torque_unsat(1), torque_unsat(2)
         // );
 
-        // 8. Symmetric Clipping
-        Eigen::Vector3f torque_cmd;
-        for (int i = 0; i < 3; i++) {
-            torque_cmd(i) = std::max(-torque_limits_(i), std::min(torque_limits_(i), torque_unsat(i)));
-        }
-
-        // 9. Update Delayed State Memory
+        // 8. Update Loop Memory
         prev_tau_ = torque_cmd;
-        prev_omega_dot_ = raw_omega_dot_meas;
-        prev_omega_ = omega_current;
         prev_omega_ff_current_ = omega_ff_current;
         first_run_ = false;
+
+        // // 8. Symmetric Clipping
+        // Eigen::Vector3f torque_cmd;
+        // for (int i = 0; i < 3; i++) {
+        //     torque_cmd(i) = std::max(-torque_limits_(i), std::min(torque_limits_(i), torque_unsat(i)));
+        // }
+
+        // 9. Update Delayed State Memory
+        // prev_tau_ = torque_cmd;
+        // prev_omega_dot_ = raw_omega_dot_meas;
+        // prev_omega_ = omega_current;
+        // prev_omega_ff_current_ = omega_ff_current;
+        // first_run_ = false;
 
         return torque_cmd;
     }
@@ -272,14 +313,20 @@ private:
 
     Eigen::Vector3f filtered_omega_dot_{Eigen::Vector3f::Zero()};
     Eigen::Vector3f filtered_tau_{Eigen::Vector3f::Zero()};
+    Eigen::Vector3f Hhat_bar_{Eigen::Vector3f::Zero()};
     
     // Filter coefficient (0.0 to 1.0). 
     // Lower = smoother but more delayed. 0.1 is a good start for 250Hz.
     float alpha_filter_ = 0.1f;
 
     Eigen::Vector3f prev_tau_;
-    Eigen::Vector3f prev_omega_dot_;
     Eigen::Vector3f prev_omega_;
+    uint64_t prev_omega_timestamp_us_ = 0;
+    
+    // Memory for Multi-Rate Integration
+    Eigen::Vector3f integral_tau_{Eigen::Vector3f::Zero()};
+    float time_since_last_meas_ = 0.0f;
+    
     Eigen::Vector3f prev_omega_ff_current_;
     bool first_run_;
 };

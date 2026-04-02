@@ -120,7 +120,7 @@ public:
       "/fmu/in/vehicle_torque_setpoint", 10);
 
     timer_control_loop_ = create_wall_timer(
-      std::chrono::milliseconds(4),
+      std::chrono::milliseconds(10),
       std::bind(&IlControlSystem::controlLoopCallback, this));
 
     RCLCPP_INFO(get_logger(), "Il_Control System Initialized");
@@ -160,6 +160,7 @@ private:
   void angularVelocityCb(const px4_msgs::msg::VehicleOdometry::SharedPtr msg)
   {
     ang_vel_current_ << msg->angular_velocity[0], msg->angular_velocity[1], msg->angular_velocity[2];
+    ang_vel_timestamp_us_ = msg->timestamp; // <--- SAVE TIMESTAMP
     ang_vel_valid_   = true;
   }
 
@@ -177,44 +178,40 @@ private:
     if (dt <= 0.0f || dt > 0.1f) { control_loop_prev_time_ = now; return; }
     control_loop_prev_time_ = now;
 
-    Eigen::Vector3f rate_cmd, accel_cmd;
+    Eigen::Vector3f rate_cmd, accel_cmd, att_cmd;
     float reference_yaw;
+    float thrust_cmd;
 
     // ── 1. Determine Acceleration and Rates based on Mode ────────────────────
     if (!bypass_pid_) {
       reference_yaw = yaw_current_; 
-      if (loop_counter_ % 5 == 0) { // Position/Velocity run at 50Hz (250/5)
+      if (loop_counter_ % 2 == 0) { // Position/Velocity run at 50Hz (250/5)
         Eigen::Vector3f vel_cmd = pos_controller_->update(pos_desired_, pos_current_);
         accel_cmd = vel_accel_controller_->update(vel_cmd, vel_current_);
         last_accel_cmd_ = accel_cmd;
-      }  else {
-        accel_cmd = last_accel_cmd_; // Use saved value
       }
-    } // FIXED: Removed extra closing brace here
-    else {
-      // RL Direct Command Mode
-      accel_cmd = direct_accel_cmd_;  
-      rate_cmd = direct_rate_cmd_;
-      reference_yaw = direct_yaw_cmd_; 
-    }
-
-    // ── 2. Convert Acceleration -> Attitude & Thrust ─────────────────────────
-    att_out_ = accel_att_controller_->update(accel_cmd, reference_yaw);
-    
-    Eigen::Vector3f att_cmd = att_out_.attitude_cmd; 
-    float thrust_cmd = att_out_.thrust_cmd;
-
-    // ── 3. Determine Desired Body Rates ──────────────────────────────────────
-    if (bypass_pid_) {
-        // In RL mode, attitude controller yaw is forced to RL yaw
-        att_cmd(2) = direct_yaw_cmd_;
-    } else {
-        // In PID mode, maintain current yaw heading if no yaw commands exist
-        att_cmd(2) = yaw_current_;
+      if (loop_counter_ % 1 == 0) {
+        accel_cmd = last_accel_cmd_;
+        att_out_ = accel_att_controller_->update(accel_cmd, reference_yaw);
+        att_cmd = att_out_.attitude_cmd; 
+        thrust_cmd = att_out_.thrust_cmd;
         Eigen::Vector3f att_cur(roll_current_, pitch_current_, yaw_current_);
         rate_cmd = att_rate_controller_->update(att_cmd, att_cur); // Generate rates via PID
+      }
+    } 
+    else {
+      // RL Direct Command Mode
+      if (loop_counter_ % 2 == 0) {
+        accel_cmd = direct_accel_cmd_;  
+        rate_cmd = direct_rate_cmd_;
+        reference_yaw = direct_yaw_cmd_;
+      }
+      if (loop_counter_ % 1 == 0) {
+        att_out_ = accel_att_controller_->update(accel_cmd, reference_yaw);
+        att_cmd = att_out_.attitude_cmd; 
+        thrust_cmd = att_out_.thrust_cmd;
+      }
     }
-
 
     // ── Mode 1: PX4 PID-ONLY ─────────────────────────────────────────────────
     if (!enable_il_control_) {
@@ -223,7 +220,7 @@ private:
       return;
     }
 
-    // ── Mode 2: ADAPTIVE TORQUE ──────────────────────────────────────────────
+    // ── Mode 2: IL_CONTROL ──────────────────────────────────────────────
     Eigen::Quaternionf q_desired;
     q_desired = Eigen::AngleAxisf(att_cmd(2), Eigen::Vector3f::UnitZ())
               * Eigen::AngleAxisf(att_cmd(1), Eigen::Vector3f::UnitY())
@@ -232,7 +229,7 @@ private:
 
     // Adaptive Update (Returns Physical Torque in N-m)
     Eigen::Vector3f physical_torque = il_control_->update(
-        q_current_, ang_vel_current_, q_desired, rate_cmd, dt);
+        q_current_, ang_vel_current_, ang_vel_timestamp_us_, q_desired, rate_cmd, dt);
 
     // Publish Custom Allocated Torque
     publishControl(thrust_cmd, physical_torque);
@@ -261,11 +258,19 @@ private:
     float raw_roll  = torque_nm(0);
     float raw_pitch = torque_nm(1);
     float raw_yaw   = torque_nm(2);
-    
-    float norm_pitch_cmd = 0.1493f * raw_pitch;
-    float norm_yaw_cmd   = 1.6245f * raw_yaw;
-    float norm_roll_cmd  = (0.1493f * raw_roll) - (0.0774f * raw_yaw); 
 
+    //based on 1.8 kg hardware drone
+    float norm_pitch_cmd = 0.07258f * raw_pitch;
+    float norm_yaw_cmd   = 0.31935f * raw_yaw;
+    float norm_roll_cmd  = (0.07258f * raw_roll); 
+
+    
+    //based on x500arm sdf max rpm 1500
+    // float norm_pitch_cmd = 0.1493f * raw_pitch;
+    // float norm_yaw_cmd   = 1.6245f * raw_yaw;
+    // float norm_roll_cmd  = (0.1493f * raw_roll) - (0.0774f * raw_yaw); 
+
+    //based on x500arm sdf max rpm 1000
     // float norm_pitch_cmd = 0.2372f * raw_pitch;
     // float norm_yaw_cmd   = 2.5801f * raw_yaw;
     // float norm_roll_cmd  = (0.2372f * raw_roll) - (0.1229f * raw_yaw);  
@@ -342,6 +347,8 @@ private:
   Eigen::Vector3f direct_rate_cmd_{Eigen::Vector3f::Zero()};
   Eigen::Vector3f direct_accel_cmd_{Eigen::Vector3f::Zero()};
   float direct_yaw_cmd_ = 0.0f;
+
+  uint64_t ang_vel_timestamp_us_ = 0;
 
   // FIXED: Added missing control_loop_prev_time_ variable back
   rclcpp::Time control_loop_prev_time_{0, 0, RCL_ROS_TIME};

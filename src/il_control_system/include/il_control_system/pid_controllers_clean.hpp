@@ -25,6 +25,7 @@ public:
     int_error_pos_z_ = 0.0f;  
     max_int_pos_xy_ = 2.0f; //0.3f;
     max_int_pos_z_ = 0.2f;
+    dt = 0.02f;
   }
 
   Eigen::Vector3f update(
@@ -35,19 +36,19 @@ public:
     // std::cout << "pos err: " << pos_error << std::endl;
     // --- DEBUG PRINT (Throttled to 2 times a second) ---
     rclcpp::Clock steady_clock(RCL_STEADY_TIME);
-    // RCLCPP_INFO_THROTTLE(
-    //     rclcpp::get_logger("PID_Debug"), // Named logger
-    //     steady_clock, 
-    //     500,                             // Print every 500 ms
-    //     "Pos Err: [%.2f, %.2f, %.2f]",   // Format string
-    //     pos_error(0), pos_error(1), pos_error(2)  // Extract X, Y, Z
-    // );
+    RCLCPP_INFO_THROTTLE(
+        rclcpp::get_logger("PID_Debug"), // Named logger
+        steady_clock, 
+        4,                             // Print every 500 ms
+        "Pos Err: [%.2f, %.2f, %.2f]",   // Format string
+        pos_error(0), pos_error(1), pos_error(2)  // Extract X, Y, Z
+    );
     // ---------------------------------------------------
 
     // === INTEGRAL TERM (accumulate with anti-windup) ===
-    int_error_pos_xy_(0) += pos_error(0) * 0.004f;  // dt = 1/250Hz
-    int_error_pos_xy_(1) += pos_error(1) * 0.004f;
-    int_error_pos_z_ += pos_error(2) * 0.004f;
+    int_error_pos_xy_(0) += pos_error(0) * dt;  // dt = 1/250Hz
+    int_error_pos_xy_(1) += pos_error(1) * dt;
+    int_error_pos_z_ += pos_error(2) * dt;
   
     
     // Clamp integral to prevent windup
@@ -74,7 +75,7 @@ public:
     // RCLCPP_INFO_THROTTLE(
     //     rclcpp::get_logger("PID_Debug"), // Named logger
     //     steady_clock, 
-    //     500,                             // Print every 500 ms
+    //     20,                             // Print every 500 ms
     //     "Vel Desired: [%.2f, %.2f, %.2f]",   // Format string
     //     vel_desired(0), vel_desired(1), vel_desired(2)  // Extract X, Y, Z
     // );
@@ -108,6 +109,8 @@ private:
   // Anti-windup limits
   float max_int_pos_xy_;
   float max_int_pos_z_;
+
+  float dt;
 };
 
 // ============================================================================
@@ -131,6 +134,8 @@ public:
 
       max_int_vel_xy_ = 2.0f;
       max_int_vel_z_ = 0.2f;
+
+      dt = 0.02f;
   }
 
   Eigen::Vector3f update(const Eigen::Vector3f& vel_desired, const Eigen::Vector3f& vel_current)
@@ -142,7 +147,7 @@ public:
     // RCLCPP_INFO_THROTTLE(
     //     rclcpp::get_logger("PID_Debug"), // Named logger
     //     steady_clock, 
-    //     500,                             // Print every 500 ms
+    //     20,                             // Print every 500 ms
     //     "Vel Err: [%.2f, %.2f, %.2f]",   // Format string
     //     vel_error(0), vel_error(1), vel_error(2)  // Extract X, Y, Z
     // );
@@ -150,8 +155,8 @@ public:
 
 
     // === INTEGRAL TERM ===
-    int_error_vel_xy_ += vel_error.head(2) * 0.004f;
-    int_error_vel_z_ += vel_error(2) * 0.004f;
+    int_error_vel_xy_ += vel_error.head(2) * dt;
+    int_error_vel_z_ += vel_error(2) * dt;
 
     int_error_vel_xy_(0) = std::max(-max_int_vel_xy_, std::min(max_int_vel_xy_, int_error_vel_xy_(0)));
     int_error_vel_xy_(1) = std::max(-max_int_vel_xy_, std::min(max_int_vel_xy_, int_error_vel_xy_(1)));
@@ -160,8 +165,8 @@ public:
     // === DERIVATIVE ON MEASUREMENT ===
     // Note: We differentiate the CURRENT velocity, not the error!
     // This calculates the physical acceleration of the drone.
-    Eigen::Vector2f vel_dot_xy = (vel_current.head(2) - last_vel_current_xy_) / 0.004f;
-    float vel_dot_z = (vel_current(2) - last_vel_current_z_) / 0.004f;
+    Eigen::Vector2f vel_dot_xy = (vel_current.head(2) - last_vel_current_xy_) / dt;
+    float vel_dot_z = (vel_current(2) - last_vel_current_z_) / dt;
 
     // Update last measurement for next iteration
     last_vel_current_xy_ = vel_current.head(2);
@@ -206,7 +211,7 @@ public:
     // RCLCPP_INFO_THROTTLE(
     //   rclcpp::get_logger("PID_Debug"), // Named logger
     //   steady_clock, 
-    //   500,                             // Print every 500 ms
+    //   20,                             // Print every 500 ms
     //   "Acc Desired: [%.2f, %.2f, %.2f]",   // Format string
     //   accel_global(0), accel_global(1), accel_global(2)  // Extract X, Y, Z
     // );
@@ -234,6 +239,7 @@ private:
     Eigen::Vector2f last_vel_current_xy_{Eigen::Vector2f::Zero()};
     float last_vel_current_z_ = 0.0f;
     float max_int_vel_xy_, max_int_vel_z_;
+    float dt;
 };
 
 // ============================================================================
@@ -319,13 +325,13 @@ public:
 
         // --- DEBUG PRINT (Throttled to 2 times a second) ---
         
-        // RCLCPP_INFO_THROTTLE(
-        //   rclcpp::get_logger("PID_Debug"), // Named logger
-        //   steady_clock, 
-        //   500,                             // Print every 500 ms
-        //   "Attitude des: [%.2f, %.2f, %.2f]",   // Format string
-        //   out.attitude_cmd(0), out.attitude_cmd(1), out.attitude_cmd(2)  // Extract X, Y, Z
-        // );
+        RCLCPP_INFO_THROTTLE(
+          rclcpp::get_logger("PID_Debug"), // Named logger
+          steady_clock, 
+          4,                             // Print every 500 ms
+          "Attitude des: [%.2f, %.2f, %.2f]",   // Format string
+          out.attitude_cmd(0), out.attitude_cmd(1), out.attitude_cmd(2)  // Extract X, Y, Z
+        );
       // ---------------------------------------------------
 
 
@@ -336,7 +342,7 @@ public:
 
         // 7. Compute Thrust Command
         // The total thrust required is the magnitude of the (a_des) vector.
-        float hover_thrust = 0.50556f; //0.8029f;
+        float hover_thrust = 0.575f; //0.50556f; //0.8029f;
         float total_accel_norm = a_des.norm();
         
         // Scale norm by gravity to get thrust relative to hover
@@ -414,6 +420,7 @@ public:
     
     // Anti-windup limits
     max_int_att_ = 0.5f;
+    dt=0.01f;
   }
 
   Eigen::Vector3f update(
@@ -430,7 +437,7 @@ public:
     // RCLCPP_INFO_THROTTLE(
     //   rclcpp::get_logger("PID_Debug"), // Named logger
     //   steady_clock, 
-    //   500,                             // Print every 500 ms
+    //   4,                             // Print every 500 ms
     //   "Attitude error: [%.2f, %.2f, %.2f]",   // Format string
     //   attitude_error(0), attitude_error(1), attitude_error(2)  // Extract X, Y, Z
     // );
@@ -438,7 +445,7 @@ public:
 
     
     // === INTEGRAL TERM (accumulate with anti-windup) ===
-    int_error_att_ += attitude_error * 0.004f;  // dt = 1/250Hz
+    int_error_att_ += attitude_error * dt;  // dt = 1/250Hz
     
     // Clamp integral per axis
     for (int i = 0; i < 3; i++) {
@@ -446,7 +453,7 @@ public:
     }
     
     // === DERIVATIVE TERM (rate of change of error) ===
-    Eigen::Vector3f att_error_dot = (attitude_error - last_att_error_) / 0.004f;
+    Eigen::Vector3f att_error_dot = (attitude_error - last_att_error_) / dt;
     last_att_error_ = attitude_error;
     
     // === FULL PID LAW: rate_cmd = Kp*e + Ki*∫e + Kd*de/dt ===
@@ -464,7 +471,7 @@ public:
     // RCLCPP_INFO_THROTTLE(
     //   rclcpp::get_logger("PID_Debug"), // Named logger
     //   steady_clock, 
-    //   500,                             // Print every 500 ms
+    //   4,                             // Print every 500 ms
     //   "Ang Vel des: [%.2f, %.2f, %.2f]",   // Format string
     //   ang_vel_cmd(0), ang_vel_cmd(1), ang_vel_cmd(2)  // Extract X, Y, Z
     // );
@@ -502,6 +509,7 @@ private:
   Eigen::Vector3f int_error_att_;      // Integral term
   Eigen::Vector3f last_att_error_;     // For derivative
   float max_int_att_;                  // Anti-windup limit
+  float dt;
 };
 
 // ============================================================================
@@ -515,7 +523,7 @@ public:
   {
     kp_rate_ = 2.5f;  // Proportional - converts rate error to acceleration
     kd_rate_ = 0.08f; // Derivative - dampens rate changes (prevents overshoot)
-    
+    dt=0.01f;
     last_rate_error_.setZero();
   }
 
@@ -537,7 +545,7 @@ public:
 
     
     // Compute derivative (rate of change of error)
-    Eigen::Vector3f rate_error_derivative = (ang_vel_error - last_rate_error_) / 0.004f;
+    Eigen::Vector3f rate_error_derivative = (ang_vel_error - last_rate_error_) / dt;
     last_rate_error_ = ang_vel_error;
     
     // PD control law: u = Kp*e + Kd*de/dt
@@ -571,6 +579,7 @@ public:
 private:
   float kp_rate_, kd_rate_;
   Eigen::Vector3f last_rate_error_;
+  float dt;
 };
 
 }  // namespace il_control_system

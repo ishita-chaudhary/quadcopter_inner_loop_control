@@ -15,7 +15,7 @@ public:
   OffboardManager() : Node("offboard_manager")
   {
     // Parameters
-    this->declare_parameter("takeoff_altitude", -5.0);
+    this->declare_parameter("takeoff_altitude", -1.0);
     this->declare_parameter("offboard_setpoint_rate_hz", 20.0);
     this->declare_parameter("enable_il_control", false);
     enable_il_control_ = this->get_parameter("enable_il_control").as_bool();
@@ -317,7 +317,7 @@ private:
   bool enable_il_control_ = false;
 
   
-  double takeoff_altitude_ = -5.0;
+  double takeoff_altitude_ = -1.0;
   int diagnostic_count_ = 0;
   
   rclcpp::Time setpoint_start_time_{0, 0, RCL_ROS_TIME};

@@ -1,7 +1,6 @@
 #include <rclcpp/rclcpp.hpp>
 #include <geometry_msgs/msg/point_stamped.hpp>
 #include <px4_msgs/msg/vehicle_local_position.hpp>
-#include <std_msgs/msg/float64_multi_array.hpp>
 #include <yaml-cpp/yaml.h>
 #include <vector>
 #include <cmath>
@@ -32,9 +31,6 @@ public:
     // Publisher
     pub_setpoint_ = create_publisher<geometry_msgs::msg::PointStamped>(
       "/control/position_setpoint", 10);
-
-    pub_arm_command_ = create_publisher<std_msgs::msg::Float64MultiArray>(
-      "/arm_position_controller/commands", 10);
 
     // Subscriber
     sub_position_ = create_subscription<px4_msgs::msg::VehicleLocalPosition>(
@@ -75,40 +71,17 @@ private:
   int sample_count_ = 0;
   bool metrics_started_ = false;
 
-
   void loadDefaultWaypoints()
   {
     RCLCPP_INFO(get_logger(), "Loading default trajectory...");
     
     // Example: Square pattern at 5m altitude
     waypoints_ = {
-      {0.0, 0.0, -5.0, "Takeoff"},
-      // {1.0, 0.0, -5.0, "Point 1"},
-      // {2.0, 0.0, -5.0, "Point 1"},
-      // {3.0, 0.0, -5.0, "Point 1"},
-      {4.0, 0.0, -5.0, "Point 1"},
-
-
-
-      // {0.0, 0.0, -5.0, "Takeoff"},
-      // {5.0, 0.0, -5.0, "Point 1"}
-
-      // {0.0, 0.0, -8.0, "Up"},
-      // {0.0, 0.0, -5.0, "Takeoff"},
-      // {0.0, 0.0, -3.0, "Down"}
-
-      // {4.0, 1.0, -5.0, "Point 2"},
-      // {4.0, 2.0, -5.0, "Point 2"},
-      // {4.0, 3.0, -5.0, "Point 2"},
-      {4.0, 4.0, -5.0, "Point 2"},
-      // {3.0, 4.0, -5.0, "Point 3"},
-      // {2.0, 4.0, -5.0, "Point 3"},
-      // {1.0, 4.0, -5.0, "Point 3"},
-      {0.0, 4.0, -5.0, "Point 3"},
-      // {0.0, 3.0, -5.0, "Return Home"},
-      // {0.0, 2.0, -5.0, "Return Home"},
-      // {0.0, 1.0, -5.0, "Return Home"},
-      {0.0, 0.0, -5.0, "Return Home"}
+      {0.0, 0.0, -1.0, "Takeoff"},
+      {1.3, 0.0, -1.0, "Point 1"},
+      {1.3, 1.3, -1.0, "Point 2"},
+      {0.0, 1.3, -1.0, "Point 3"},
+      {0.0, 0.0, -1.0, "Return Home"}
     };
   }
 
@@ -161,15 +134,11 @@ private:
     current_position_[2] = msg->z;
     position_received_ = true;
 
-    // --- Safety Check for Arm ---
-    // Only start swinging arm if we are 1m above ground to avoid hitting floor
-    if (!arm_active_ && std::abs(msg->z) > 1.0) {
-        arm_active_ = true;
-        arm_start_time_ = this->now();
-        RCLCPP_INFO(get_logger(), "⚠ Altitude safe. Starting Arm Swing!");
-        
-        // Also start recording metrics now
+    // --- Safety Check for Metrics ---
+    // Start recording metrics once we are 1m above ground
+    if (!metrics_started_ && std::abs(msg->z) > 0.5) {
         metrics_started_ = true;
+        RCLCPP_INFO(get_logger(), "⚠ Altitude safe. Starting metrics recording.");
     }
 
     // Check if reached current waypoint
@@ -241,9 +210,6 @@ private:
         sample_count_++;
     }
 
-    //Update Arm Trajectory (Continuous Sine Wave)
-    updateArmTrajectory();
-
     // Debug logging
     if (position_received_ && (log_counter_++ % 50 == 0)) {  // Every 5 seconds
       double dist = calculateDistance(current_position_[0], current_position_[1], 
@@ -255,37 +221,6 @@ private:
                   current_wp.name.c_str(), dist,
                   current_position_[0], current_position_[1], current_position_[2]);
     }
-  }
-
-  void updateArmTrajectory()
-  {
-    std::vector<double> joints = {-1.57, 3.14, 0.0}; // Default safe pose
-
-    if (arm_active_) {
-        double t = (this->now() - arm_start_time_).seconds();
-        
-        // --- Oscillation Logic ---
-        // Center: -1.57 (Straight Down)
-        // Amplitude: 1.0 rad (~57 degrees) -> Swing from -0.57 to -2.57
-        // Frequency: 0.5 Hz (2 seconds per cycle)
-        double amplitude = 1.0; 
-        double amplitude_2 = 1.3; 
-
-        double frequency = 0.1; 
-        
-        // J1: Sine Wave
-        joints[0] = -1.57 + amplitude * std::sin(2.0 * M_PI * frequency * t);
-        
-        // J2: 0.0 (Fully Extended) - Maximizes disturbance torque
-        joints[1] = 0.0 + amplitude_2 * std::sin(2.0 * M_PI * frequency * t);
-        
-        // J3: 0.0 (Unused)
-        joints[2] = 0.0;
-    }
-
-    std_msgs::msg::Float64MultiArray arm_msg;
-    arm_msg.data = joints;
-    pub_arm_command_->publish(arm_msg);
   }
 
   void reportPerformance()
@@ -311,7 +246,6 @@ private:
 
   // Publishers & Subscribers
   rclcpp::Publisher<geometry_msgs::msg::PointStamped>::SharedPtr pub_setpoint_;
-  rclcpp::Publisher<std_msgs::msg::Float64MultiArray>::SharedPtr pub_arm_command_;
   rclcpp::Subscription<px4_msgs::msg::VehicleLocalPosition>::SharedPtr sub_position_;
   rclcpp::TimerBase::SharedPtr timer_;
 
@@ -324,10 +258,8 @@ private:
   bool position_received_ = false;
   bool hovering_ = false;
   bool trajectory_complete_ = false;
-  bool arm_active_ = false;
 
   rclcpp::Time hover_start_time_{0, 0, RCL_ROS_TIME};
-  rclcpp::Time arm_start_time_{0, 0, RCL_ROS_TIME};
   
   // Parameters
   double waypoint_radius_;
@@ -344,4 +276,3 @@ int main(int argc, char** argv)
   rclcpp::shutdown();
   return 0;
 }
-
