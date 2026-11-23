@@ -84,7 +84,7 @@ where $\odot$ indicates element-wise multiplication. The implemented torque law 
 ```math
 \tau_c=-\Lambda\odot s
 +\bar M\left(\dot\omega_d-\Phi\odot e_\omega\right)
--\rho\odot\operatorname{sat}(s/v),
+-\rho\odot\mathrm{sat}(s/v),
 ```
 
 with switching-gain vector
@@ -119,7 +119,7 @@ where $J$ is the vehicle inertia matrix and $B$ maps squared rotor speeds to bod
 where $G^+$ is a regularized pseudoinverse of the control-effectiveness matrix. The motor-level correction is combined with the collective-thrust command:
 
 ```math
-u_i=\operatorname{clip}\!\left(u_{\mathrm{collective}}+
+u_i=\mathrm{clip}\!\left(u_{\mathrm{collective}}+
 \frac{\Delta\omega_{m,i}^2}{\omega_{\max}^2},0,1\right).
 ```
 
