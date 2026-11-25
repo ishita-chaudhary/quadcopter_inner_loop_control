@@ -2,7 +2,7 @@
 
 **C++/ROS 2 implementations of three disturbance-compensating quadrotor control approaches: disturbance-estimating torque control, adaptive sliding-mode control (ASMC), and an Adaptive INDI controller experiment.**
 
-This repository is part of the [Robust Goal-Directed Aerial Manipulation research project](https://github.com/1shit4/aerial-manipulation-rl-control). In aerial manipulation, motion of the attached arm produces additional forces and moments that can disturb the quadrotor and degrade end-effector tracking. The controllers here investigate lower-level flight control for tracking commanded vehicle motion in the presence of such disturbances. The repository focuses on **controller implementations and PX4–Gazebo tests**.
+This repository is part of the [Robust Goal-Directed Aerial Manipulation research project](https://github.com/ishita-chaudhary/aerial-manipulation-rl-control). In aerial manipulation, motion of the attached arm produces additional forces and moments that can disturb the quadrotor and degrade end-effector tracking. The controllers here investigate lower-level flight control for tracking commanded vehicle motion in the presence of such disturbances. The repository focuses on **controller implementations and PX4–Gazebo tests**.
 
 ## Control Flow and PX4 Integration
 
@@ -163,8 +163,8 @@ The controllers use **ROS 2, C++, Eigen, PX4 messages, and Gazebo**. Parameters,
 
 ## Related Code
 
-- **[Aerial Manipulation — Project Overview](https://github.com/1shit4/aerial-manipulation-rl-control):** research objective and links to the training, inference, simulator, and controller implementations.
-- **[arm_control_ws](https://github.com/1shit4/arm_control_ws):** aerial-manipulator model, Gazebo integration, and arm-actuation experiments.
-- **[aerial_gym_simulator](https://github.com/1shit4/aerial_gym_simulator):** related Python controller implementations integrated with aerial-manipulator RL experiments in Aerial Gym.
+- **[Aerial Manipulation — Project Overview](https://github.com/ishita-chaudhary/aerial-manipulation-rl-control):** research objective and links to the training, inference, simulator, and controller implementations.
+- **[arm_control_ws](https://github.com/ishita-chaudhary/arm_control_ws):** aerial-manipulator model, Gazebo integration, and arm-actuation experiments.
+- **[aerial_gym_simulator](https://github.com/ishita-chaudhary/aerial_gym_simulator):** related Python controller implementations integrated with aerial-manipulator RL experiments in Aerial Gym.
 
 *Research conducted at the Robotics Research Center, IIIT Hyderabad.*
